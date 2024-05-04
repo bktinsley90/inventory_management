@@ -28,6 +28,10 @@ namespace Brittany_wguC968
             };
            
         }
+        public void AddPartToList(Part newPart)
+        {
+            parts.Add(newPart);
+        }
         private void PopulateDataGridViews()
         {
             dataGridView1.AutoGenerateColumns = true;
