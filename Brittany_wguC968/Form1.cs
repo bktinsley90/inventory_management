@@ -1,19 +1,22 @@
+using System.Security.Cryptography.X509Certificates;
+
 namespace Brittany_wguC968
 {
    
     public partial class Main : Form
     {
+       
         private List<Part> parts;
         private List<Product> products;
-        private Inventory inventory;
+        //private Inventory inventory;
         public Main()
         {
             InitializeComponent();
             InitializeData();
             PopulateDataGridViews();
-            inventory = new Inventory();
+            //inventory = new Inventory();
             exitBtn.Click += exitBtn_Click;
-
+       
             //addPartBtn.Click += addPartBtn_Click;
         }
         private void InitializeData()
@@ -29,12 +32,14 @@ namespace Brittany_wguC968
                 new Product {ProductID=2, Name="Yellow Bicycle", Inventory=19, Price=9.66m, Min=1, Max=20},
                 new Product {ProductID=3, Name="Blue Bicycle", Inventory=5, Price=12.77m, Min=1, Max=25}
             };
-           
         }
-        //public void AddPartToList(Part newPart)
-        //{
-        //    parts.Add(newPart);
-        //}
+        
+   
+        public void AddPartToList(Part newPart)
+        {
+           parts.Add(newPart);
+        }
+
         private void PopulateDataGridViews()
         {
             dataGridView1.AutoGenerateColumns = true;
@@ -58,12 +63,21 @@ namespace Brittany_wguC968
         {
             Application.Exit();
         }
-
-       /* private void addPartBtn_Click(object sender, EventArgs e) 
+        //method to add part to inventory
+       /* public void AddPart(Part part)
         {
-            addPartForm addPartForm = new addPartForm();
-            addPartForm.ShowDialog();
+                inventory.AddPart(part);
         }*/
+        private void addPartBtn_Click(object sender, EventArgs e)
+        {
+            AddPartForm addPartForm = new AddPartForm();
+            addPartForm.PartAdded += AddPartForm_PartAdded;
+            addPartForm.Show();
+        }
+        private void AddPartForm_PartAdded(object sender, PartAddedEventArgs e)
+        {
+            dataGridView1.Rows.Add(e.NewPart.PartID, e.NewPart.Name, e.NewPart.Inventory, e.NewPart.Price, e.NewPart.Min, e.NewPart.Max);
+        }
         public class Part
         {
             public int PartID { get; set; }
@@ -86,6 +100,11 @@ namespace Brittany_wguC968
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        internal void AddPart(Brittany_wguC968.Part newPart)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Brittany_wguC968
 {
+
     public abstract class Part
     {
         public int PartID { get; set; }
@@ -83,66 +84,72 @@ namespace Brittany_wguC968
             return productToRemove != null && Products.Remove(productToRemove);
         }
 
-    }
-    public Product LookupProduct(int productID)
-    {
-        foreach(var product in Products)
+
+        public Product LookupProduct(int productID)
         {
-            if (product.ProductID == productID)
+            foreach (var product in Products)
             {
-                return product;
+                if (product.ProductID == productID)
+                {
+                    return product;
+                }
+            }
+            return null;
+        }
+        public void UpdateProduct(int productID, Product newProduct)
+        {
+            var productToUpdate = LookupProduct(productID);
+            if (productToUpdate != null)
+            {
+                productToUpdate.Name = newProduct.Name;
+                productToUpdate.Price = newProduct.Price;
             }
         }
-        return null;
-    }
-    public void UpdateProduct(int productID, Product newProduct)
-    {
-        var productToUpdate = LookupProduct(productID);
-         if (productToUpdate != null)
+        public void AddPart(Part part)
         {
-            productToUpdate.Name = newProduct.Name;
-            productToUpdate.Price = newProduct.Price;
+            AllParts.Add(part);
         }
-    }
-    public void AddPart(Part part)
-    {
-        AllParts.Add(part);
-    }
-    public bool DeletePart(Part part)
-    {
-        return AllParts.Remove(part);
-    }
-    public Part LookupPart(int partID)
-    {
-        foreach (var part in AllParts)
+        public bool DeletePart(Part part)
         {
-            if (part.PartID == partID)
+            return AllParts.Remove(part);
+        }
+        public Part LookupPart(int partID)
+        {
+            foreach (var part in AllParts)
             {
-                return part;
+                if (part.PartID == partID)
+                {
+                    return part;
+                }
+            }
+            return null;
+        }
+        public void UpdatePart(int partID, Part newPart)
+        {
+            var partToUpdate = LookupPart(partID);
+            if (partToUpdate != null)
+            {
+                partToUpdate.Name = newPart.Name;
+                partToUpdate.Price = newPart.Price;
             }
         }
-        return null;
-    }
-    public void UpdatePart(int partID, Part newPart)
-    {
-        var partToUpdate = LookupPart(partID);
-        if (partToUpdate != null)
-        {
-            partToUpdate.Name = newPart.Name;
-            partToUpdate.Price = newPart.Price;
-        }
-    }
 
-    internal record struct NewStruct(object Item1, object Item2)
-    {
-        public static implicit operator (object, object)(NewStruct value)
+        internal void AddPart(Main.Part part)
         {
-            return (value.Item1, value.Item2);
+            throw new NotImplementedException();
         }
 
-        public static implicit operator NewStruct((object, object) value)
+        internal record struct NewStruct(object Item1, object Item2)
         {
-            return new NewStruct(value.Item1, value.Item2);
+            public static implicit operator (object, object)(NewStruct value)
+            {
+                return (value.Item1, value.Item2);
+            }
+
+            public static implicit operator NewStruct((object, object) value)
+            {
+                return new NewStruct(value.Item1, value.Item2);
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Brittany_wguC968
 {
-    partial class addPartForm
+    partial class AddPartForm
     {
         /// <summary>
         /// Required designer variable.
@@ -47,8 +47,9 @@
             saveBtn = new Button();
             inHouseRadioBtn = new RadioButton();
             outSourcedRadioBtn = new RadioButton();
-            textBox7 = new TextBox();
+            numMachineID = new TextBox();
             label8 = new Label();
+            txtCompanyName = new TextBox();
             SuspendLayout();
             // 
             // label1
@@ -202,12 +203,12 @@
             outSourcedRadioBtn.Text = "Outsourced";
             outSourcedRadioBtn.UseVisualStyleBackColor = true;
             // 
-            // textBox7
+            // numMachineID
             // 
-            textBox7.Location = new Point(141, 292);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(100, 23);
-            textBox7.TabIndex = 17;
+            numMachineID.Location = new Point(141, 292);
+            numMachineID.Name = "numMachineID";
+            numMachineID.Size = new Size(100, 23);
+            numMachineID.TabIndex = 17;
             // 
             // label8
             // 
@@ -218,13 +219,22 @@
             label8.TabIndex = 18;
             label8.Text = "Machine ID";
             // 
-            // addPartForm
+            // txtCompanyName
+            // 
+            txtCompanyName.Location = new Point(141, 292);
+            txtCompanyName.Name = "txtCompanyName";
+            txtCompanyName.Size = new Size(100, 23);
+            txtCompanyName.TabIndex = 19;
+            txtCompanyName.Visible = false;
+            // 
+            // AddPartForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(386, 510);
+            ClientSize = new Size(386, 360);
+            Controls.Add(txtCompanyName);
             Controls.Add(label8);
-            Controls.Add(textBox7);
+            Controls.Add(numMachineID);
             Controls.Add(outSourcedRadioBtn);
             Controls.Add(inHouseRadioBtn);
             Controls.Add(saveBtn);
@@ -242,7 +252,7 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Name = "addPartForm";
+            Name = "AddPartForm";
             Text = "addPartForm";
             ResumeLayout(false);
             PerformLayout();
@@ -268,7 +278,8 @@
         private Button saveBtn;
         private RadioButton inHouseRadioBtn;
         private RadioButton outSourcedRadioBtn;
-        private TextBox textBox7;
+        private TextBox numMachineID;
         private Label label8;
+        private TextBox txtCompanyName;
     }
 }

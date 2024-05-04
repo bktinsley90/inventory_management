@@ -10,23 +10,24 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static Brittany_wguC968.Main;
 
-namespace Brittany_wguC968
+namespace AddPartForm
 {
-    public partial class addPartForm : Form
+    public partial class AddPartForm : Form
     {
-        public addPartForm()
+        private Main mainForm;
+        private Inventory inventory;
+        public event EventHandler<PartAddedEventArgs> PartAdded;
+
+        public AddPartForm(Main mainForm)
         {
             InitializeComponent();
             saveBtn.Click += btnSave_Click;
-         
+            inventory = new Inventory();
+            this.mainForm = mainForm;
         }
         private Main main;
 
-        public addPartForm(Main main)
-        {
-            InitializeComponent();
-            this.main = main;
-        }
+      
         private int ParseInt(string x)
         {
             return int.Parse(x);
@@ -38,26 +39,49 @@ namespace Brittany_wguC968
                 MessageBox.Show("Please enter a Part Name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
-            Part newPart = new Part
+            //creating a new part
+            Part newPart;
+            if (inHouseRadioBtn.Checked)
             {
-                Name = txtPartName.Text,
-                Inventory = ParseInt(numInventory.Text),
-                Price = decimal.Parse(numPrice.Text),
-                Min = ParseInt(numMin.Text),
-                Max = ParseInt(numMax.Text)
-            };
-
-            main.AddPartToList(newPart);
+                newPart = new Inhouse
+                {
+                    Name = txtPartName.Text,
+                    InStock = ParseInt(numInventory.Text),
+                    Price = decimal.Parse(numPrice.Text),
+                    Min = ParseInt(numMin.Text),
+                    Max = ParseInt(numMax.Text),
+                    MachineID = ParseInt(numMachineID.Text)
+                };
+            }
+            else
+            {
+                newPart = new Outsourced
+                {
+                    Name = txtPartName.Text,
+                    InStock = ParseInt(numInventory.Text),
+                    Price = decimal.Parse(numPrice.Text),
+                    Min = ParseInt(numMin.Text),
+                    Max = ParseInt(numMax.Text),
+                    CompanyName = txtCompanyName.Text
+                };
+            }
+            
+            inventory.AddPart(newPart);
+            //Raise the PartAdded event
+            PartAdded?.Invoke(this, new PartAddedEventArgs(newPart));
 
             this.Close();
         }
 
         private void inHouseRadioBtn_CheckedChanged(object sender, EventArgs e)
         {
-            if (!inHouseRadioBtn.Checked)
+            if (inHouseRadioBtn.Checked)
             {
-                label8.Text = "Machine ID";
+                label8.Text= "Machine ID";
+                label8.Visible = true;
+                numMachineID.Visible = true;
+
+
             }
         }
 
@@ -66,6 +90,16 @@ namespace Brittany_wguC968
             if (outSourcedRadioBtn.Checked)
             {
                 label8.Text = "Company Name";
+                label8.Visible = true;
+                txtCompanyName.Visible = true;
+            }
+        }
+        public class PartAddedEventArgs : EventArgs
+        {
+            public Part NewPart { get; }
+            public PartAddedEventArgs(Part newPart)
+            {
+                NewPart = newPart;
             }
         }
     }
