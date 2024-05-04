@@ -5,13 +5,16 @@ namespace Brittany_wguC968
     {
         private List<Part> parts;
         private List<Product> products;
+        private Inventory inventory;
         public Main()
         {
             InitializeComponent();
             InitializeData();
             PopulateDataGridViews();
+            inventory = new Inventory();
             exitBtn.Click += exitBtn_Click;
-            addPartBtn.Click += addPartBtn_Click;
+
+            //addPartBtn.Click += addPartBtn_Click;
         }
         private void InitializeData()
         {
@@ -28,10 +31,10 @@ namespace Brittany_wguC968
             };
            
         }
-        public void AddPartToList(Part newPart)
-        {
-            parts.Add(newPart);
-        }
+        //public void AddPartToList(Part newPart)
+        //{
+        //    parts.Add(newPart);
+        //}
         private void PopulateDataGridViews()
         {
             dataGridView1.AutoGenerateColumns = true;
@@ -56,11 +59,11 @@ namespace Brittany_wguC968
             Application.Exit();
         }
 
-        private void addPartBtn_Click(object sender, EventArgs e) 
+       /* private void addPartBtn_Click(object sender, EventArgs e) 
         {
             addPartForm addPartForm = new addPartForm();
             addPartForm.ShowDialog();
-        }
+        }*/
         public class Part
         {
             public int PartID { get; set; }
