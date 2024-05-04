@@ -8,30 +8,34 @@ namespace Brittany_wguC968
        
         private List<Part> parts;
         private List<Product> products;
-        //private Inventory inventory;
+        private Inventory inventory;
         public Main()
         {
             InitializeComponent();
             InitializeData();
             PopulateDataGridViews();
-            //inventory = new Inventory();
+            inventory = new Inventory();
             exitBtn.Click += exitBtn_Click;
        
-            //addPartBtn.Click += addPartBtn_Click;
+            addPartBtn.Click += AddPartBtn_Click;
         }
         private void InitializeData()
         {
-            parts = new List<Part> {
-                 new Part { PartID=1, Name="Wheel", Inventory=15, Price=12.11m, Min=5, Max=25 },
-                 new Part { PartID=2, Name="Pedal", Inventory=11, Price=8.22m, Min=5, Max=25},
-                 new Part { PartID=3, Name="Chain", Inventory=12, Price=8.33m, Min=5, Max=25},
-                 new Part { PartID=4, Name="Seat", Inventory=8, Price=4.55m, Min=2, Max=15}
-            };
-            products = new List<Product> {
-                new Product {ProductID=1, Name="Red Bicycle", Inventory=15, Price=11.44m, Min=1, Max=25},
-                new Product {ProductID=2, Name="Yellow Bicycle", Inventory=19, Price=9.66m, Min=1, Max=20},
-                new Product {ProductID=3, Name="Blue Bicycle", Inventory=5, Price=12.77m, Min=1, Max=25}
-            };
+            inventory = new Inventory();
+
+            inventory.AllParts.Add(new InHouse { PartID = 1, Name = "Wheel", InStock = 15, Price = 12.11m, Min = 5, Max = 25 });
+
+            inventory.AllParts.Add(new InHouse { PartID = 2, Name = "Pedal", InStock = 11, Price = 8.22m, Min = 5, Max = 25 });
+
+            inventory.AllParts.Add(new InHouse { PartID = 3, Name = "Chain", InStock = 12, Price = 8.33m, Min = 5, Max = 25 });
+
+            inventory.AllParts.Add(new InHouse { PartID = 4, Name = "Seat", InStock = 8, Price = 4.55m, Min = 2, Max = 15 });
+
+
+            inventory.AddProduct(new Product { ProductID = 1, Name = "Red Bicycle", InStock = 15, Price = 11.44m, Min = 1, Max = 25 });
+            inventory.AddProduct(new Product { ProductID = 2, Name = "Yellow Bicycle", InStock = 19, Price = 9.66m, Min = 1, Max = 20 });
+            inventory.AddProduct(new Product { ProductID = 3, Name = "Blue Bicycle", InStock = 5, Price = 12.77m, Min = 1, Max = 25 });
+           
         }
         
    
@@ -42,43 +46,46 @@ namespace Brittany_wguC968
 
         private void PopulateDataGridViews()
         {
-            dataGridView1.AutoGenerateColumns = true;
+            dataGridView1.DataSource = null;
+            dataGridView2.DataSource = null;
+
+            var parts = inventory.GetParts();
+            var products = inventory.GetProducts();
+
             dataGridView1.DataSource = parts;
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.RowHeadersVisible = false;
-            dataGridView1.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Yellow;
-            dataGridView1.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
-            
-
-            dataGridView2.AutoGenerateColumns = true;
             dataGridView2.DataSource = products;
-            dataGridView2.RowHeadersVisible = false;
-            dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView2.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Yellow;
-            dataGridView2.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
-           
 
+            //creating a seperate function to customize
+            CustomizeDataGridView(dataGridView1);
+            CustomizeDataGridView(dataGridView2);
+        }
+        private void CustomizeDataGridView(DataGridView dataGridView)
+        {
+            dataGridView2.AutoGenerateColumns = true;
+            dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView.RowHeadersVisible = false;
+            dataGridView.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Yellow;
+            dataGridView.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
         }
         private void exitBtn_Click(object send, EventArgs e)
         {
             Application.Exit();
         }
-        //method to add part to inventory
-       /* public void AddPart(Part part)
+      
+        private void AddPartBtn_Click(object sender, EventArgs e)
         {
-                inventory.AddPart(part);
-        }*/
-        private void addPartBtn_Click(object sender, EventArgs e)
-        {
-            AddPartForm addPartForm = new AddPartForm();
+            AddPartForm addPartForm = new AddPartForm(this);
             addPartForm.PartAdded += AddPartForm_PartAdded;
             addPartForm.Show();
         }
-        private void AddPartForm_PartAdded(object sender, PartAddedEventArgs e)
+        private void AddPartForm_PartAdded(object sender, AddPartForm.PartAddedEventArgs e)
         {
-            dataGridView1.Rows.Add(e.NewPart.PartID, e.NewPart.Name, e.NewPart.Inventory, e.NewPart.Price, e.NewPart.Min, e.NewPart.Max);
+            inventory.AddPart(e.NewPart);
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = parts;
+            //dataGridView1.Rows.Add(e.NewPart.PartID, e.NewPart.Name, e.NewPart.InStock, e.NewPart.Price, e.NewPart.Min, e.NewPart.Max);
         }
-        public class Part
+      /*  public class Part
         {
             public int PartID { get; set; }
             public string Name { get; set; }
@@ -95,7 +102,7 @@ namespace Brittany_wguC968
             public decimal Price { get; set; }
             public int Min { get; set; }
             public int Max { get; set; }
-        }
+        }*/
 
         private void label2_Click(object sender, EventArgs e)
         {

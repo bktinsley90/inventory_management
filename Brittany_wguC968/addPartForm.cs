@@ -8,9 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static Brittany_wguC968.Main;
+//using static Brittany_wguC968.Main;
 
-namespace AddPartForm
+namespace Brittany_wguC968
 {
     public partial class AddPartForm : Form
     {
@@ -24,6 +24,7 @@ namespace AddPartForm
             saveBtn.Click += btnSave_Click;
             inventory = new Inventory();
             this.mainForm = mainForm;
+            
         }
         private Main main;
 
@@ -78,8 +79,10 @@ namespace AddPartForm
             if (inHouseRadioBtn.Checked)
             {
                 label8.Text= "Machine ID";
-                label8.Visible = true;
                 numMachineID.Visible = true;
+
+                //Hiding CompanyName
+                txtCompanyName.Visible = false;
 
 
             }
@@ -90,8 +93,10 @@ namespace AddPartForm
             if (outSourcedRadioBtn.Checked)
             {
                 label8.Text = "Company Name";
-                label8.Visible = true;
                 txtCompanyName.Visible = true;
+
+                //hiding numMachine
+                numMachineID.Visible = false;
             }
         }
         public class PartAddedEventArgs : EventArgs

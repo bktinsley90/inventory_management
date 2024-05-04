@@ -70,6 +70,14 @@ namespace Brittany_wguC968
         {
             Products.Add(product);
         }
+        public List<Product> GetProducts()
+        {
+            return Products.ToList();
+        }
+        public List<Part> GetParts()
+        {
+            return AllParts.ToList();
+        }
         public bool RemoveProduct(int productID)
         {
             Product productToRemove = null;
@@ -134,10 +142,6 @@ namespace Brittany_wguC968
             }
         }
 
-        internal void AddPart(Main.Part part)
-        {
-            throw new NotImplementedException();
-        }
 
         internal record struct NewStruct(object Item1, object Item2)
         {
