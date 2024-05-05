@@ -67,7 +67,7 @@ namespace Brittany_wguC968
                 };
             }
             
-            inventory.AddPart(newPart);
+            //inventory.AddPart(newPart, dataGridView1);
             //Raise the PartAdded event
             PartAdded?.Invoke(this, new PartAddedEventArgs(newPart));
 

@@ -1,12 +1,21 @@
 ﻿namespace Brittany_wguC968
 {
-    internal class InHouse : Part
+    public class InHouse : Part
     {
-        public int PartID { get; set; }
-        public string Name { get; set; }
-        public int InStock { get; set; }
-        public decimal Price { get; set; }
-        public int Min { get; set; }
-        public int Max { get; set; }
+        private int machineID;
+        public int Machine { get; set; }
+        public InHouse() { }
+        public InHouse(int partID, string name, int instock, decimal price, int min, int max, int machineID)
+        {
+            PartID = partID;
+            Name = name;
+            InStock = instock;
+            Price = price;
+            Max = max;
+            Min = min;
+            Machine = machineID;
+
+        }
+   
     }
 }

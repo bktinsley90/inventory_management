@@ -8,68 +8,11 @@ using System.Threading.Tasks;
 namespace Brittany_wguC968
 {
 
-    public abstract class Part
-    {
-        public int PartID { get; set; }
-        public string Name { get; set; }
-        public decimal Price { get; set; }
-        public int InStock { get; set; }
-        public int Min { get; set; }
-        public int Max { get; set; }
-    }
-    public class Inhouse : Part
-    {
-        public int MachineID { get; set; }
-    }
-    public class Outsourced : Part
-    {
-        public string CompanyName { get; set; }
-    }
-    public class Product
-    {
-        public int ProductID { get; set; }
-        public string Name { get; set; }
-        public decimal Price { get; set; }
-        public int InStock { get; set; }
-        public int Min { get; set; }
-        public int Max { get; set; }
-        public BindingList<Part>? AssociatedParts { get; }
-        new BindingList<Part>? NewStruct;
-
-        public void AddAssociatedPart(Part part) => AssociatedParts.Add(part);
-        public bool RemoveAssociatedPart(int partID)
-        {
-            Part partToRemove = null;
-            foreach(var part in AssociatedParts)
-            {
-                if (part.PartID == partID)
-                {
-                    partToRemove = part;
-                    break;
-                }
-            }
-            return partToRemove != null && AssociatedParts.Remove(partToRemove);
-        }
-        public Part LookupAssociatedPart(int partID)
-        {
-            foreach(var part in AssociatedParts)
-            {
-                if (part.PartID == partID)
-                {
-                    return part;
-                }
-            }
-            return null;
-        }
-    }
     public class Inventory
     {
-        public BindingList<Product> Products { get; } = new BindingList<Product>();
-        public BindingList<Part> AllParts { get; } = new BindingList<Part>();
-        public void AddProduct(Product product)
-        {
-            Products.Add(product);
-        }
+        public static BindingList<Product> Products { get; } = new BindingList<Product>();
+        public static BindingList<Part> AllParts { get; } = new BindingList<Part>();
+       
         public List<Product> GetProducts()
         {
             return Products.ToList();
@@ -78,7 +21,29 @@ namespace Brittany_wguC968
         {
             return AllParts.ToList();
         }
-        public bool RemoveProduct(int productID)
+        public static void sampleParts()
+        {
+            Part example1 = new InHouse { PartID = 1, Name = "Wheel", InStock = 15, Price = 12.11m, Min = 5, Max = 25 };
+            Part example2 = new InHouse { PartID = 2, Name = "Pedal", InStock = 11, Price = 8.22m, Min = 5, Max = 25 };
+            Part example3 = new InHouse { PartID = 3, Name = "Cochain", InStock = 12, Price = 8.33m, Min = 5, Max = 25 };
+            Part example4 = new InHouse { PartID = 4, Name = "Seat", InStock = 8, Price = 4.55m, Min = 2, Max = 15 };
+            AddPart(example1);
+            AddPart(example2);
+            AddPart(example3);
+            AddPart(example4);
+            
+           
+        }
+        public static void sampleProducts()
+        {
+            Product example5 = new Product { ProductID = 1, Name = "Red Bicycle", InStock = 15, Price = 11.44m, Min = 1, Max = 25 };
+            Product example6 = new Product { ProductID = 2, Name = "Yellow Bicycle", InStock = 19, Price = 9.66m, Min = 1, Max = 20 };
+            Product example7 = new Product { ProductID = 3, Name = "Blue Bicycle", InStock = 5, Price = 12.77m, Min = 1, Max = 25 };
+            AddProduct(example5);
+            AddProduct(example6);
+            AddProduct(example7);
+        }
+        public static bool RemoveProduct(int productID)
         {
             Product productToRemove = null;
             foreach (var product in Products)
@@ -93,7 +58,7 @@ namespace Brittany_wguC968
         }
 
 
-        public Product LookupProduct(int productID)
+        public static Product LookupProduct(int productID)
         {
             foreach (var product in Products)
             {
@@ -104,7 +69,7 @@ namespace Brittany_wguC968
             }
             return null;
         }
-        public void UpdateProduct(int productID, Product newProduct)
+        public static void UpdateProduct(int productID, Product newProduct)
         {
             var productToUpdate = LookupProduct(productID);
             if (productToUpdate != null)
@@ -113,15 +78,28 @@ namespace Brittany_wguC968
                 productToUpdate.Price = newProduct.Price;
             }
         }
-        public void AddPart(Part part)
+        public static void AddPart(Part part)
         {
-            AllParts.Add(part);
+            var existingPart = AllParts.FirstOrDefault(p => p.PartID == part.PartID);
+            if (existingPart != null)
+            {
+                throw new InvalidOperationException("A part with the same PartID already exists");
+            }
+            else
+            {
+                AllParts.Add(part);
+            }
+ 
         }
-        public bool DeletePart(Part part)
+        public static void AddProduct(Product product)
+        {
+            Products.Add(product);
+        }
+        public static bool DeletePart(Part part)
         {
             return AllParts.Remove(part);
         }
-        public Part LookupPart(int partID)
+        public static Part LookupPart(int partID)
         {
             foreach (var part in AllParts)
             {
@@ -132,7 +110,7 @@ namespace Brittany_wguC968
             }
             return null;
         }
-        public void UpdatePart(int partID, Part newPart)
+        public static void UpdatePart(int partID, Part newPart)
         {
             var partToUpdate = LookupPart(partID);
             if (partToUpdate != null)
