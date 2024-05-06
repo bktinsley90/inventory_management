@@ -50,7 +50,6 @@ namespace Brittany_wguC968
         private void AddPartBtn_Click(object sender, EventArgs e)
         {
             AddPartForm addPartForm = new AddPartForm(this);
-            //addPartForm.PartAdded += AddPartForm_PartAdded;
             addPartForm.Show();
         }
         private void ModPartBtn_Click(object sender, EventArgs e)
@@ -131,6 +130,35 @@ namespace Brittany_wguC968
                 dataGridView1.DataSource = parts;
             }
         } 
+        private void SearchProductBtn_Click(object sender, EventArgs e)
+        {
+            BindingList<Product> TempList = new BindingList<Product>();
+            string keyword = searchProdTextBox.Text.Trim().ToLower();
+            bool foundMatch = false;
+            var products = Inventory.ProductList;
+            if (string.IsNullOrEmpty(keyword))
+            {
+                MessageBox.Show("Please enter a search keyword.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+
+            for (int i = 0; i < products.Count; i++)
+            {
+                if (products[i].Name.ToLower().Contains(keyword))
+                {
+                    TempList.Add(products[i]);
+                    foundMatch = true;
+                }
+            }
+            dataGridView2.DataSource = TempList;
+
+            if (!foundMatch)
+            {
+                MessageBox.Show("No matching part found.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dataGridView2.DataSource = products;
+            }
+        }
       
     }
 }

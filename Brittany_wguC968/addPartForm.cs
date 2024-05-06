@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-//using static Brittany_wguC968.Main;
+
 
 namespace Brittany_wguC968
 {
@@ -16,12 +16,11 @@ namespace Brittany_wguC968
     {
         private Main mainForm;
         private Inventory inventory;
-        public event EventHandler<PartAddedEventArgs> PartAdded;
+        
 
         public AddPartForm(Main mainForm)
         {
             InitializeComponent();
-            saveBtn.Click += btnSave_Click;
             inventory = new Inventory();
             this.mainForm = mainForm;
             
@@ -53,8 +52,9 @@ namespace Brittany_wguC968
                     Max = ParseInt(numMax.Text),
                     MachineID = ParseInt(numMachineID.Text)
                 };
+                Inventory.AddPart(newPart);
             }
-            else
+            else if (outSourcedRadioBtn.Checked)
             {
                 newPart = new Outsourced
                 {
@@ -65,12 +65,9 @@ namespace Brittany_wguC968
                     Max = ParseInt(numMax.Text),
                     CompanyName = txtCompanyName.Text
                 };
+                Inventory.AddPart(newPart);
             }
             
-            //inventory.AddPart(newPart, dataGridView1);
-            //Raise the PartAdded event
-            PartAdded?.Invoke(this, new PartAddedEventArgs(newPart));
-
             this.Close();
         }
 
@@ -80,11 +77,7 @@ namespace Brittany_wguC968
             {
                 label8.Text= "Machine ID";
                 numMachineID.Visible = true;
-
-                //Hiding CompanyName
                 txtCompanyName.Visible = false;
-
-
             }
         }
 
@@ -95,18 +88,14 @@ namespace Brittany_wguC968
                 label8.Text = "Company Name";
                 txtCompanyName.Visible = true;
 
-                //hiding numMachine
                 numMachineID.Visible = false;
             }
         }
-        public class PartAddedEventArgs : EventArgs
+        private void CancelBtn_Click(object sender, EventArgs e)
         {
-            public Part NewPart { get; }
-            public PartAddedEventArgs(Part newPart)
-            {
-                NewPart = newPart;
-            }
+            Close();
         }
+       
     }
    
 }

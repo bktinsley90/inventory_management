@@ -171,6 +171,7 @@
             cancelBtn.TabIndex = 13;
             cancelBtn.Text = "Cancel";
             cancelBtn.UseVisualStyleBackColor = true;
+            cancelBtn.Click += CancelBtn_Click;
             // 
             // saveBtn
             // 
@@ -180,6 +181,7 @@
             saveBtn.TabIndex = 14;
             saveBtn.Text = "Save";
             saveBtn.UseVisualStyleBackColor = true;
+            saveBtn.Click += btnSave_Click;
             // 
             // inHouseRadioBtn
             // 
@@ -191,6 +193,7 @@
             inHouseRadioBtn.TabStop = true;
             inHouseRadioBtn.Text = "In-House";
             inHouseRadioBtn.UseVisualStyleBackColor = true;
+            inHouseRadioBtn.CheckedChanged += inHouseRadioBtn_CheckedChanged;
             // 
             // outSourcedRadioBtn
             // 
@@ -202,6 +205,7 @@
             outSourcedRadioBtn.TabStop = true;
             outSourcedRadioBtn.Text = "Outsourced";
             outSourcedRadioBtn.UseVisualStyleBackColor = true;
+            outSourcedRadioBtn.CheckedChanged += outSourcedRadioBtn_CheckedChanged;
             // 
             // numMachineID
             // 

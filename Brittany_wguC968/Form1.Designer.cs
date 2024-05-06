@@ -36,8 +36,8 @@
             addPartBtn = new Button();
             modPartBtn = new Button();
             deletePartBtn = new Button();
-            button5 = new Button();
-            textBox2 = new TextBox();
+            searchProd = new Button();
+            searchProdTextBox = new TextBox();
             label3 = new Label();
             dataGridView2 = new DataGridView();
             addProdBtn = new Button();
@@ -124,21 +124,22 @@
             deletePartBtn.UseVisualStyleBackColor = true;
             deletePartBtn.Click += DeletePartBtn_CLick;
             // 
-            // button5
+            // searchProd
             // 
-            button5.Location = new Point(833, 79);
-            button5.Name = "button5";
-            button5.Size = new Size(75, 23);
-            button5.TabIndex = 8;
-            button5.Text = "Search";
-            button5.UseVisualStyleBackColor = true;
+            searchProd.Location = new Point(833, 79);
+            searchProd.Name = "searchProd";
+            searchProd.Size = new Size(75, 23);
+            searchProd.TabIndex = 8;
+            searchProd.Text = "Search";
+            searchProd.UseVisualStyleBackColor = true;
+            searchProd.Click += SearchProductBtn_Click;
             // 
-            // textBox2
+            // searchProdTextBox
             // 
-            textBox2.Location = new Point(914, 79);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(100, 23);
-            textBox2.TabIndex = 9;
+            searchProdTextBox.Location = new Point(914, 79);
+            searchProdTextBox.Name = "searchProdTextBox";
+            searchProdTextBox.Size = new Size(100, 23);
+            searchProdTextBox.TabIndex = 9;
             // 
             // label3
             // 
@@ -209,8 +210,8 @@
             Controls.Add(addProdBtn);
             Controls.Add(dataGridView2);
             Controls.Add(label3);
-            Controls.Add(textBox2);
-            Controls.Add(button5);
+            Controls.Add(searchProdTextBox);
+            Controls.Add(searchProd);
             Controls.Add(deletePartBtn);
             Controls.Add(modPartBtn);
             Controls.Add(addPartBtn);
@@ -237,8 +238,8 @@
         private Button addPartBtn;
         private Button modPartBtn;
         private Button deletePartBtn;
-        private Button button5;
-        private TextBox textBox2;
+        private Button searchProd;
+        private TextBox searchProdTextBox;
         private Label label3;
         private DataGridView dataGridView2;
         private Button addProdBtn;

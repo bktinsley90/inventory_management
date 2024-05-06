@@ -12,6 +12,7 @@ namespace Brittany_wguC968
     public class Inventory
     {
         public static BindingList<Product> Products { get; } = new BindingList<Product>();
+        public static BindingList<Product> ProductList { get { return Products; } }
         public static BindingList<Part> AllParts { get; } = new BindingList<Part>();
         public static BindingList<Part> PartsList { get {return AllParts; }}
 
@@ -33,7 +34,6 @@ namespace Brittany_wguC968
             AddPart(example2);
             AddPart(example3);
             AddPart(example4);
-           
         }
         public static void sampleProducts()
         {
@@ -122,17 +122,5 @@ namespace Brittany_wguC968
         }
 
 
-        internal record struct NewStruct(object Item1, object Item2)
-        {
-            public static implicit operator (object, object)(NewStruct value)
-            {
-                return (value.Item1, value.Item2);
-            }
-
-            public static implicit operator NewStruct((object, object) value)
-            {
-                return new NewStruct(value.Item1, value.Item2);
-            }
-        }
     }
 }
