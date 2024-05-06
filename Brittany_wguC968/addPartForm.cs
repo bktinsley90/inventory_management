@@ -18,11 +18,12 @@ namespace Brittany_wguC968
         private Inventory inventory;
         
 
-        public AddPartForm(Main mainForm)
+        public AddPartForm(Main mainForm, Inventory inventory)
         {
             InitializeComponent();
-            inventory = new Inventory();
+
             this.mainForm = mainForm;
+            this.inventory = mainForm.Inventory;
             
         }
         private Main main;
@@ -41,6 +42,7 @@ namespace Brittany_wguC968
             }
             //creating a new part
             Part newPart;
+
             if (inHouseRadioBtn.Checked)
             {
                 newPart = new InHouse
@@ -52,7 +54,8 @@ namespace Brittany_wguC968
                     Max = ParseInt(numMax.Text),
                     MachineID = ParseInt(numMachineID.Text)
                 };
-                Inventory.AddPart(newPart);
+                inventory.AddPart(newPart);
+
             }
             else if (outSourcedRadioBtn.Checked)
             {
@@ -65,8 +68,9 @@ namespace Brittany_wguC968
                     Max = ParseInt(numMax.Text),
                     CompanyName = txtCompanyName.Text
                 };
-                Inventory.AddPart(newPart);
+                inventory.AddPart(newPart);
             }
+            
             
             this.Close();
         }

@@ -24,7 +24,7 @@ namespace Brittany_wguC968
         {
             return AllParts.ToList();
         }
-        public static void sampleParts()
+        public void sampleParts()
         {
             Part example1 = new InHouse { PartID = 1, Name = "Wheel", InStock = 15, Price = 12.11m, Min = 5, Max = 25 };
             Part example2 = new InHouse { PartID = 2, Name = "Pedal", InStock = 11, Price = 8.22m, Min = 5, Max = 25 };
@@ -79,7 +79,7 @@ namespace Brittany_wguC968
                 productToUpdate.Price = newProduct.Price;
             }
         }
-        public static void AddPart(Part part)
+        public void AddPart(Part part)
         {
             var existingPart = AllParts.FirstOrDefault(p => p.PartID == part.PartID);
             if (existingPart != null)
