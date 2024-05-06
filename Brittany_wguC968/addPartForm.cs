@@ -44,7 +44,7 @@ namespace Brittany_wguC968
             Part newPart;
             if (inHouseRadioBtn.Checked)
             {
-                newPart = new Inhouse
+                newPart = new InHouse
                 {
                     Name = txtPartName.Text,
                     InStock = ParseInt(numInventory.Text),

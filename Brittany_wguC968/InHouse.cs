@@ -3,7 +3,7 @@
     public class InHouse : Part
     {
         private int machineID;
-        public int Machine { get; set; }
+        public int MachineID { get; set; }
         public InHouse() { }
         public InHouse(int partID, string name, int instock, decimal price, int min, int max, int machineID)
         {
@@ -13,7 +13,7 @@
             Price = price;
             Max = max;
             Min = min;
-            Machine = machineID;
+            MachineID = machineID;
 
         }
    

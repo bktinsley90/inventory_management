@@ -5,38 +5,32 @@ namespace Brittany_wguC968
    
     public partial class Main : Form
     {
-       
-        private List<Part> parts;
-        private List<Product> products;
         private Inventory inventory;
         public Main()
         {
             InitializeComponent();
-           
+            Inventory.sampleParts();
+            Inventory.sampleProducts();
             PopulateDataGridViews();
-            inventory = new Inventory();
+            
             exitBtn.Click += exitBtn_Click;
        
-            addPartBtn.Click += AddPartBtn_Click;
+           // addPartBtn.Click += AddPartBtn_Click;
         }
      
-        
-   
-       /* public void AddPartToList(Part newPart)
-        {
-           parts.Add(newPart);
-        }*/
+ 
+ 
 
         private void PopulateDataGridViews()
         {
-            dataGridView1.DataSource = null;
-            dataGridView2.DataSource = null;
+            var partsTable = new BindingSource();
+            var productTable = new BindingSource();
 
-            var parts = inventory.GetParts();
-            var products = inventory.GetProducts();
+           partsTable.DataSource = Inventory.AllParts;
+           productTable.DataSource =Inventory.Products;
 
-            dataGridView1.DataSource = parts;
-            dataGridView2.DataSource = products;
+            dataGridView1.DataSource = partsTable;
+            dataGridView2.DataSource = productTable;
 
             //creating a seperate function to customize
             CustomizeDataGridView(dataGridView1);
@@ -58,34 +52,17 @@ namespace Brittany_wguC968
         private void AddPartBtn_Click(object sender, EventArgs e)
         {
             AddPartForm addPartForm = new AddPartForm(this);
-            addPartForm.PartAdded += AddPartForm_PartAdded;
+            //addPartForm.PartAdded += AddPartForm_PartAdded;
             addPartForm.Show();
         }
-        private void AddPartForm_PartAdded(object sender, AddPartForm.PartAddedEventArgs e)
+      /*  private void AddPartForm_PartAdded(object sender, AddPartForm.PartAddedEventArgs e)
         {
             inventory.AddPart(e.NewPart, dataGridView1);
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = parts;
             //dataGridView1.Rows.Add(e.NewPart.PartID, e.NewPart.Name, e.NewPart.InStock, e.NewPart.Price, e.NewPart.Min, e.NewPart.Max);
-        }
-      /*  public class Part
-        {
-            public int PartID { get; set; }
-            public string Name { get; set; }
-            public int Inventory { get; set; }
-            public decimal Price { get; set; }
-            public int Min { get; set; }
-            public int Max { get; set; }
-        }
-        public class Product
-        {
-            public int ProductID { get; set; }
-            public string Name { get; set; }
-            public int Inventory { get; set; }
-            public decimal Price { get; set; }
-            public int Min { get; set; }
-            public int Max { get; set; }
         }*/
+ 
 
         private void label2_Click(object sender, EventArgs e)
         {

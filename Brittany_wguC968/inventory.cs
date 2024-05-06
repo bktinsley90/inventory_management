@@ -31,7 +31,6 @@ namespace Brittany_wguC968
             AddPart(example2);
             AddPart(example3);
             AddPart(example4);
-            
            
         }
         public static void sampleProducts()
