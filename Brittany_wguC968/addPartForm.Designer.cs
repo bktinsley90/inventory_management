@@ -33,7 +33,7 @@
             label2 = new Label();
             imageList1 = new ImageList(components);
             label3 = new Label();
-            textBox1 = new TextBox();
+            IDtextBox = new TextBox();
             txtPartName = new TextBox();
             label4 = new Label();
             label5 = new Label();
@@ -85,12 +85,13 @@
             label3.TabIndex = 2;
             label3.Text = "Name";
             // 
-            // textBox1
+            // IDtextBox
             // 
-            textBox1.Location = new Point(139, 75);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(100, 23);
-            textBox1.TabIndex = 3;
+            IDtextBox.Enabled = false;
+            IDtextBox.Location = new Point(139, 75);
+            IDtextBox.Name = "IDtextBox";
+            IDtextBox.Size = new Size(100, 23);
+            IDtextBox.TabIndex = 3;
             // 
             // txtPartName
             // 
@@ -252,7 +253,7 @@
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(txtPartName);
-            Controls.Add(textBox1);
+            Controls.Add(IDtextBox);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -268,7 +269,7 @@
         private Label label2;
         private ImageList imageList1;
         private Label label3;
-        private TextBox textBox1;
+        private TextBox IDtextBox;
         private TextBox txtPartName;
         private Label label4;
         private Label label5;

@@ -21,6 +21,8 @@ namespace Brittany_wguC968
             InitializeComponent();
 
             this.mainForm = mainForm;
+
+            
             
         }
       
@@ -37,11 +39,13 @@ namespace Brittany_wguC968
             }
             //creating a new part
             Part newPart;
+            
 
             if (inHouseRadioBtn.Checked)
             {
                 newPart = new InHouse
                 {
+                    
                     Name = txtPartName.Text,
                     InStock = ParseInt(numInventory.Text),
                     Price = decimal.Parse(numPrice.Text),
@@ -54,6 +58,7 @@ namespace Brittany_wguC968
             {
                 newPart = new Outsourced
                 {
+                    
                     Name = txtPartName.Text,
                     InStock = ParseInt(numInventory.Text),
                     Price = decimal.Parse(numPrice.Text),

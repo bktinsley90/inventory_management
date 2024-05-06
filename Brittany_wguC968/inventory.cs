@@ -24,8 +24,21 @@ namespace Brittany_wguC968
         {
             return AllParts.ToList();
         }
+        private static int nextPartID = 0;
+        public static int GeneratePartID()
+        {
+            if (AllParts.Count > 0)
+            {
+                int maxPartID = AllParts.Max(part => part.PartID);
+                nextPartID = maxPartID + 1;
+                return nextPartID;
+            }
+            
+        }
+
         public static void sampleParts()
         {
+            
             Part example1 = new InHouse { PartID = 1, Name = "Wheel", InStock = 15, Price = 12.11m, Min = 5, Max = 25 };
             Part example2 = new InHouse { PartID = 2, Name = "Pedal", InStock = 11, Price = 8.22m, Min = 5, Max = 25 };
             Part example3 = new InHouse { PartID = 3, Name = "Cochain", InStock = 12, Price = 8.33m, Min = 5, Max = 25 };
@@ -34,6 +47,8 @@ namespace Brittany_wguC968
             AddPart(example2);
             AddPart(example3);
             AddPart(example4);
+
+           // MonitorInventory();
         }
         public static void sampleProducts()
         {
@@ -88,7 +103,10 @@ namespace Brittany_wguC968
             }
             else
             {
+                int newPartID = GeneratePartID();
+                part.PartID = newPartID;
                 AllParts.Add(part);
+                
             }
  
         }
