@@ -6,13 +6,14 @@ namespace Brittany_wguC968
 
     public partial class Main : Form
     {
-        private Inventory inventory;
+        //private Inventory inventory = new Inventory();
 
         public Inventory? Inventory { get; internal set; }
 
         public Main()
         {
             InitializeComponent();
+            Inventory = new Inventory();
             Inventory.sampleParts();
             Inventory.sampleProducts();
             PopulateDataGridViews();
@@ -38,7 +39,7 @@ namespace Brittany_wguC968
         }
         private void CustomizeDataGridView(DataGridView dataGridView)
         {
-            dataGridView2.AutoGenerateColumns = true;
+            dataGridView.AutoGenerateColumns = true;
             dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView.RowHeadersVisible = false;
             dataGridView.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Yellow;
