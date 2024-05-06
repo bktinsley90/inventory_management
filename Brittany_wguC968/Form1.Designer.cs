@@ -34,14 +34,14 @@
             button1 = new Button();
             dataGridView1 = new DataGridView();
             addPartBtn = new Button();
-            button3 = new Button();
+            modPartBtn = new Button();
             button4 = new Button();
             button5 = new Button();
             textBox2 = new TextBox();
             label3 = new Label();
             dataGridView2 = new DataGridView();
-            button6 = new Button();
-            button7 = new Button();
+            addProdBtn = new Button();
+            modProdBtn = new Button();
             button8 = new Button();
             exitBtn = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -75,7 +75,6 @@
             label2.Size = new Size(48, 21);
             label2.TabIndex = 2;
             label2.Text = "Parts\r\n";
-            label2.Click += label2_Click;
             // 
             // button1
             // 
@@ -102,15 +101,17 @@
             addPartBtn.TabIndex = 5;
             addPartBtn.Text = "Add";
             addPartBtn.UseVisualStyleBackColor = true;
+            addPartBtn.Click += AddPartBtn_Click;
             // 
-            // button3
+            // modPartBtn
             // 
-            button3.Location = new Point(318, 351);
-            button3.Name = "button3";
-            button3.Size = new Size(75, 23);
-            button3.TabIndex = 6;
-            button3.Text = "Modify";
-            button3.UseVisualStyleBackColor = true;
+            modPartBtn.Location = new Point(318, 351);
+            modPartBtn.Name = "modPartBtn";
+            modPartBtn.Size = new Size(75, 23);
+            modPartBtn.TabIndex = 6;
+            modPartBtn.Text = "Modify";
+            modPartBtn.UseVisualStyleBackColor = true;
+            modPartBtn.Click += ModPartBtn_Click;
             // 
             // button4
             // 
@@ -155,23 +156,25 @@
             dataGridView2.Size = new Size(459, 215);
             dataGridView2.TabIndex = 11;
             // 
-            // button6
+            // addProdBtn
             // 
-            button6.Location = new Point(777, 351);
-            button6.Name = "button6";
-            button6.Size = new Size(75, 23);
-            button6.TabIndex = 12;
-            button6.Text = "Add";
-            button6.UseVisualStyleBackColor = true;
+            addProdBtn.Location = new Point(777, 351);
+            addProdBtn.Name = "addProdBtn";
+            addProdBtn.Size = new Size(75, 23);
+            addProdBtn.TabIndex = 12;
+            addProdBtn.Text = "Add";
+            addProdBtn.UseVisualStyleBackColor = true;
+            addProdBtn.Click += AddProdBtn_CLick;
             // 
-            // button7
+            // modProdBtn
             // 
-            button7.Location = new Point(858, 351);
-            button7.Name = "button7";
-            button7.Size = new Size(75, 23);
-            button7.TabIndex = 13;
-            button7.Text = "Modify";
-            button7.UseVisualStyleBackColor = true;
+            modProdBtn.Location = new Point(858, 351);
+            modProdBtn.Name = "modProdBtn";
+            modProdBtn.Size = new Size(75, 23);
+            modProdBtn.TabIndex = 13;
+            modProdBtn.Text = "Modify";
+            modProdBtn.UseVisualStyleBackColor = true;
+            modProdBtn.Click += ModProdBtn_Click;
             // 
             // button8
             // 
@@ -190,6 +193,7 @@
             exitBtn.TabIndex = 15;
             exitBtn.Text = "Exit";
             exitBtn.UseVisualStyleBackColor = true;
+            exitBtn.Click += exitBtn_Click;
             // 
             // Main
             // 
@@ -198,14 +202,14 @@
             ClientSize = new Size(1026, 498);
             Controls.Add(exitBtn);
             Controls.Add(button8);
-            Controls.Add(button7);
-            Controls.Add(button6);
+            Controls.Add(modProdBtn);
+            Controls.Add(addProdBtn);
             Controls.Add(dataGridView2);
             Controls.Add(label3);
             Controls.Add(textBox2);
             Controls.Add(button5);
             Controls.Add(button4);
-            Controls.Add(button3);
+            Controls.Add(modPartBtn);
             Controls.Add(addPartBtn);
             Controls.Add(dataGridView1);
             Controls.Add(button1);
@@ -228,14 +232,14 @@
         private Button button1;
         private DataGridView dataGridView1;
         private Button addPartBtn;
-        private Button button3;
+        private Button modPartBtn;
         private Button button4;
         private Button button5;
         private TextBox textBox2;
         private Label label3;
         private DataGridView dataGridView2;
-        private Button button6;
-        private Button button7;
+        private Button addProdBtn;
+        private Button modProdBtn;
         private Button button8;
         private Button exitBtn;
     }

@@ -12,10 +12,6 @@ namespace Brittany_wguC968
             Inventory.sampleParts();
             Inventory.sampleProducts();
             PopulateDataGridViews();
-            
-            exitBtn.Click += exitBtn_Click;
-       
-           // addPartBtn.Click += AddPartBtn_Click;
         }
      
  
@@ -55,23 +51,21 @@ namespace Brittany_wguC968
             //addPartForm.PartAdded += AddPartForm_PartAdded;
             addPartForm.Show();
         }
-      /*  private void AddPartForm_PartAdded(object sender, AddPartForm.PartAddedEventArgs e)
+        private void ModPartBtn_Click(object sender, EventArgs e) 
         {
-            inventory.AddPart(e.NewPart, dataGridView1);
-            dataGridView1.DataSource = null;
-            dataGridView1.DataSource = parts;
-            //dataGridView1.Rows.Add(e.NewPart.PartID, e.NewPart.Name, e.NewPart.InStock, e.NewPart.Price, e.NewPart.Min, e.NewPart.Max);
-        }*/
- 
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
+            modifyPartForm modifyPartForm = new modifyPartForm();
+            modifyPartForm.Show();
         }
-
-        internal void AddPart(Brittany_wguC968.Part newPart)
+        private void AddProdBtn_CLick(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            addProductForm addProductForm = new addProductForm();
+            addProductForm.Show();
         }
+        private void ModProdBtn_Click(object sender, EventArgs e)
+        {
+            modifyProductForm modifyProductForm = new modifyProductForm();
+            modifyProductForm.Show();
+        }
+      
     }
 }
