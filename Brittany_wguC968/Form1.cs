@@ -6,7 +6,7 @@ namespace Brittany_wguC968
 
     public partial class Main : Form
     {
-        //private Inventory inventory = new Inventory();
+        
 
         public Inventory? Inventory { get; internal set; }
 
@@ -52,7 +52,7 @@ namespace Brittany_wguC968
 
         private void AddPartBtn_Click(object sender, EventArgs e)
         {
-            AddPartForm addPartForm = new AddPartForm(this, inventory);
+            AddPartForm addPartForm = new AddPartForm(this, Inventory);
             addPartForm.Show();
         }
         private void ModPartBtn_Click(object sender, EventArgs e)

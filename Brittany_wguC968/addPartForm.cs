@@ -15,19 +15,14 @@ namespace Brittany_wguC968
     public partial class AddPartForm : Form
     {
         private Main mainForm;
-        private Inventory inventory;
-        
-
+ 
         public AddPartForm(Main mainForm, Inventory inventory)
         {
             InitializeComponent();
 
             this.mainForm = mainForm;
-            this.inventory = mainForm.Inventory;
             
         }
-        private Main main;
-
       
         private int ParseInt(string x)
         {
@@ -54,8 +49,6 @@ namespace Brittany_wguC968
                     Max = ParseInt(numMax.Text),
                     MachineID = ParseInt(numMachineID.Text)
                 };
-                inventory.AddPart(newPart);
-
             }
             else if (outSourcedRadioBtn.Checked)
             {
@@ -68,10 +61,14 @@ namespace Brittany_wguC968
                     Max = ParseInt(numMax.Text),
                     CompanyName = txtCompanyName.Text
                 };
-                inventory.AddPart(newPart);
+                
             }
-            
-            
+            else
+            {
+                MessageBox.Show("Please select whether the part is In-House or Outsourced.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            Inventory.AddPart(newPart);
             this.Close();
         }
 
