@@ -13,7 +13,7 @@ namespace Brittany_wguC968
     {
         public static BindingList<Product> Products { get; } = new BindingList<Product>();
         public static BindingList<Part> AllParts { get; } = new BindingList<Part>();
-        public static BindingList<Part> partsList { get {return AllParts; } set{AllParts = value; }
+        public static BindingList<Part> PartsList { get {return AllParts; }}
 
         public List<Product> GetProducts()
         {

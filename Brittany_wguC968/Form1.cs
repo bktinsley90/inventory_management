@@ -104,28 +104,31 @@ namespace Brittany_wguC968
         }
         private void SearchPartBtn_Click(object sender, EventArgs e)
         {
-           
+            BindingList<Part> TempList = new BindingList<Part>();
             string keyword = searchPartTextBox.Text.Trim().ToLower();
+            bool foundMatch = false;
+            var parts = Inventory.PartsList;
             if (string.IsNullOrEmpty(keyword))
             {
                 MessageBox.Show("Please enter a search keyword.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
-            BindingList<Part> filteredParts = new BindingList<Part>();
 
-            foreach(var part in parts)
+            for(int i=0; i < parts.Count; i++)
             {
-                if(part.Name.ToLower().Contains(keyword))
+                if (parts[i].Name.ToLower().Contains(keyword))
                 {
-                    filteredParts.Add(part);
+                    TempList.Add(parts[i]);
+                    foundMatch = true;
                 }
             }
-            dataGridView1.DataSource = filteredParts;
+            dataGridView1.DataSource = TempList;
            
-            if (filteredParts.Count == 0)
+            if (!foundMatch)
             {
                 MessageBox.Show("No matching part found.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dataGridView1.DataSource = parts;
             }
         } 
       
