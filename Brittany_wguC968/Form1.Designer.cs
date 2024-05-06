@@ -35,14 +35,14 @@
             dataGridView1 = new DataGridView();
             addPartBtn = new Button();
             modPartBtn = new Button();
-            button4 = new Button();
+            deletePartBtn = new Button();
             button5 = new Button();
             textBox2 = new TextBox();
             label3 = new Label();
             dataGridView2 = new DataGridView();
             addProdBtn = new Button();
             modProdBtn = new Button();
-            button8 = new Button();
+            deleteProdBtn = new Button();
             exitBtn = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
@@ -113,14 +113,15 @@
             modPartBtn.UseVisualStyleBackColor = true;
             modPartBtn.Click += ModPartBtn_Click;
             // 
-            // button4
+            // deletePartBtn
             // 
-            button4.Location = new Point(399, 351);
-            button4.Name = "button4";
-            button4.Size = new Size(75, 23);
-            button4.TabIndex = 7;
-            button4.Text = "Delete";
-            button4.UseVisualStyleBackColor = true;
+            deletePartBtn.Location = new Point(399, 351);
+            deletePartBtn.Name = "deletePartBtn";
+            deletePartBtn.Size = new Size(75, 23);
+            deletePartBtn.TabIndex = 7;
+            deletePartBtn.Text = "Delete";
+            deletePartBtn.UseVisualStyleBackColor = true;
+            deletePartBtn.Click += DeletePartBtn_CLick;
             // 
             // button5
             // 
@@ -176,14 +177,14 @@
             modProdBtn.UseVisualStyleBackColor = true;
             modProdBtn.Click += ModProdBtn_Click;
             // 
-            // button8
+            // deleteProdBtn
             // 
-            button8.Location = new Point(939, 351);
-            button8.Name = "button8";
-            button8.Size = new Size(75, 23);
-            button8.TabIndex = 14;
-            button8.Text = "Delete";
-            button8.UseVisualStyleBackColor = true;
+            deleteProdBtn.Location = new Point(939, 351);
+            deleteProdBtn.Name = "deleteProdBtn";
+            deleteProdBtn.Size = new Size(75, 23);
+            deleteProdBtn.TabIndex = 14;
+            deleteProdBtn.Text = "Delete";
+            deleteProdBtn.UseVisualStyleBackColor = true;
             // 
             // exitBtn
             // 
@@ -201,14 +202,14 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1026, 498);
             Controls.Add(exitBtn);
-            Controls.Add(button8);
+            Controls.Add(deleteProdBtn);
             Controls.Add(modProdBtn);
             Controls.Add(addProdBtn);
             Controls.Add(dataGridView2);
             Controls.Add(label3);
             Controls.Add(textBox2);
             Controls.Add(button5);
-            Controls.Add(button4);
+            Controls.Add(deletePartBtn);
             Controls.Add(modPartBtn);
             Controls.Add(addPartBtn);
             Controls.Add(dataGridView1);
@@ -233,14 +234,14 @@
         private DataGridView dataGridView1;
         private Button addPartBtn;
         private Button modPartBtn;
-        private Button button4;
+        private Button deletePartBtn;
         private Button button5;
         private TextBox textBox2;
         private Label label3;
         private DataGridView dataGridView2;
         private Button addProdBtn;
         private Button modProdBtn;
-        private Button button8;
+        private Button deleteProdBtn;
         private Button exitBtn;
     }
 }

@@ -66,6 +66,23 @@ namespace Brittany_wguC968
             modifyProductForm modifyProductForm = new modifyProductForm();
             modifyProductForm.Show();
         }
+        private void DeletePartBtn_CLick(object sender, EventArgs e)
+        {
+            if (dataGridView1. SelectedRows.Count > 0)
+            {
+                DialogResult result = MessageBox.Show("Do you really Want to delete Part? This cannot be Undone", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result == DialogResult.Yes)
+                {
+                    DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
+                    int rowIndex = selectedRow.Index;
+                    dataGridView1.Rows.RemoveAt(rowIndex);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a row to delete.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
       
     }
 }
