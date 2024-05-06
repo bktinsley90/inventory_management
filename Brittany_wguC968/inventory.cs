@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,7 +13,8 @@ namespace Brittany_wguC968
     {
         public static BindingList<Product> Products { get; } = new BindingList<Product>();
         public static BindingList<Part> AllParts { get; } = new BindingList<Part>();
-       
+        public static BindingList<Part> partsList { get {return AllParts; } set{AllParts = value; }
+
         public List<Product> GetProducts()
         {
             return Products.ToList();

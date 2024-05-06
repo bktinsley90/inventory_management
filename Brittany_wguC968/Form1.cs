@@ -7,7 +7,7 @@ namespace Brittany_wguC968
     public partial class Main : Form
     {
         private Inventory inventory;
-        private BindingList<Part> parts = new BindingList<Part> ();
+        
         public Main()
         {
             InitializeComponent();
