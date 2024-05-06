@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            textBox1 = new TextBox();
+            searchPartTextBox = new TextBox();
             label2 = new Label();
-            button1 = new Button();
+            searchPartBtn = new Button();
             dataGridView1 = new DataGridView();
             addPartBtn = new Button();
             modPartBtn = new Button();
@@ -59,12 +59,12 @@
             label1.TabIndex = 0;
             label1.Text = "Inventory Management System";
             // 
-            // textBox1
+            // searchPartTextBox
             // 
-            textBox1.Location = new Point(374, 80);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(100, 23);
-            textBox1.TabIndex = 1;
+            searchPartTextBox.Location = new Point(374, 80);
+            searchPartTextBox.Name = "searchPartTextBox";
+            searchPartTextBox.Size = new Size(100, 23);
+            searchPartTextBox.TabIndex = 1;
             // 
             // label2
             // 
@@ -76,14 +76,15 @@
             label2.TabIndex = 2;
             label2.Text = "Parts\r\n";
             // 
-            // button1
+            // searchPartBtn
             // 
-            button1.Location = new Point(293, 80);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 3;
-            button1.Text = "Search";
-            button1.UseVisualStyleBackColor = true;
+            searchPartBtn.Location = new Point(293, 80);
+            searchPartBtn.Name = "searchPartBtn";
+            searchPartBtn.Size = new Size(75, 23);
+            searchPartBtn.TabIndex = 3;
+            searchPartBtn.Text = "Search";
+            searchPartBtn.UseVisualStyleBackColor = true;
+            searchPartBtn.Click += SearchPartBtn_Click;
             // 
             // dataGridView1
             // 
@@ -185,6 +186,7 @@
             deleteProdBtn.TabIndex = 14;
             deleteProdBtn.Text = "Delete";
             deleteProdBtn.UseVisualStyleBackColor = true;
+            deleteProdBtn.Click += DeleteProdBtn_Click;
             // 
             // exitBtn
             // 
@@ -213,9 +215,9 @@
             Controls.Add(modPartBtn);
             Controls.Add(addPartBtn);
             Controls.Add(dataGridView1);
-            Controls.Add(button1);
+            Controls.Add(searchPartBtn);
             Controls.Add(label2);
-            Controls.Add(textBox1);
+            Controls.Add(searchPartTextBox);
             Controls.Add(label1);
             Name = "Main";
             Text = "Main";
@@ -228,9 +230,9 @@
         #endregion
 
         private Label label1;
-        private TextBox textBox1;
+        private TextBox searchPartTextBox;
         private Label label2;
-        private Button button1;
+        private Button searchPartBtn;
         private DataGridView dataGridView1;
         private Button addPartBtn;
         private Button modPartBtn;

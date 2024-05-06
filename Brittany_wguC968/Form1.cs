@@ -1,11 +1,13 @@
 using System.Security.Cryptography.X509Certificates;
+using System.ComponentModel;
 
 namespace Brittany_wguC968
 {
-   
+
     public partial class Main : Form
     {
         private Inventory inventory;
+        private BindingList<Part> parts = new BindingList<Part> ();
         public Main()
         {
             InitializeComponent();
@@ -13,17 +15,17 @@ namespace Brittany_wguC968
             Inventory.sampleProducts();
             PopulateDataGridViews();
         }
-     
- 
- 
+
+
+
 
         private void PopulateDataGridViews()
         {
             var partsTable = new BindingSource();
             var productTable = new BindingSource();
 
-           partsTable.DataSource = Inventory.AllParts;
-           productTable.DataSource =Inventory.Products;
+            partsTable.DataSource = Inventory.AllParts;
+            productTable.DataSource = Inventory.Products;
 
             dataGridView1.DataSource = partsTable;
             dataGridView2.DataSource = productTable;
@@ -44,14 +46,14 @@ namespace Brittany_wguC968
         {
             Application.Exit();
         }
-      
+
         private void AddPartBtn_Click(object sender, EventArgs e)
         {
             AddPartForm addPartForm = new AddPartForm(this);
             //addPartForm.PartAdded += AddPartForm_PartAdded;
             addPartForm.Show();
         }
-        private void ModPartBtn_Click(object sender, EventArgs e) 
+        private void ModPartBtn_Click(object sender, EventArgs e)
         {
             modifyPartForm modifyPartForm = new modifyPartForm();
             modifyPartForm.Show();
@@ -68,7 +70,7 @@ namespace Brittany_wguC968
         }
         private void DeletePartBtn_CLick(object sender, EventArgs e)
         {
-            if (dataGridView1. SelectedRows.Count > 0)
+            if (dataGridView1.SelectedRows.Count > 0)
             {
                 DialogResult result = MessageBox.Show("Do you really Want to delete Part? This cannot be Undone", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (result == DialogResult.Yes)
@@ -83,6 +85,49 @@ namespace Brittany_wguC968
                 MessageBox.Show("Please select a row to delete.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+        private void DeleteProdBtn_Click(object sender, EventArgs e)
+        {
+            if (dataGridView2.SelectedRows.Count > 0)
+            {
+                DialogResult result = MessageBox.Show("Do you really Want to delete Product? This cannot be Undone", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result == DialogResult.Yes)
+                {
+                    DataGridViewRow selectedRow = dataGridView2.SelectedRows[0];
+                    int rowIndex = selectedRow.Index;
+                    dataGridView2.Rows.RemoveAt(rowIndex);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a row to delete.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+        private void SearchPartBtn_Click(object sender, EventArgs e)
+        {
+           
+            string keyword = searchPartTextBox.Text.Trim().ToLower();
+            if (string.IsNullOrEmpty(keyword))
+            {
+                MessageBox.Show("Please enter a search keyword.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            BindingList<Part> filteredParts = new BindingList<Part>();
+
+            foreach(var part in parts)
+            {
+                if(part.Name.ToLower().Contains(keyword))
+                {
+                    filteredParts.Add(part);
+                }
+            }
+            dataGridView1.DataSource = filteredParts;
+           
+            if (filteredParts.Count == 0)
+            {
+                MessageBox.Show("No matching part found.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        } 
       
     }
 }
