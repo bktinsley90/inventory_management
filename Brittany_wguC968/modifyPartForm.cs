@@ -45,16 +45,24 @@ namespace Brittany_wguC968
         }
         private void savePartBtn_Click(object sender, EventArgs e)
         {
-            part.Name = txtPartName.Text;
-            part.InStock = ParseInt(numInventory.Text);
-            part.Price = decimal.Parse(numPrice.Text);
-            part.Min = ParseInt(numMin.Text);
-            part.Max = ParseInt(numMax.Text);
-            
+
+            Part newPart;
 
             if (part is InHouse inHouse)
             {
+
+                newPart = new Inhouse
+                {
+                    //part.PartID = Inventory.LookupPart(part.PartID.ToString());
+                part.Name = txtPartName.Text;
+                part.InStock = ParseInt(numInventory.Text);
+                part.Price = decimal.Parse(numPrice.Text);
+                part.Min = ParseInt(numMin.Text);
+                part.Max = ParseInt(numMax.Text);
                 inHouse.MachineID = ParseInt(numMachineID.Text);
+                 };
+            }
+                
             }
             else if (part is Outsourced outsourced)
             {
