@@ -14,10 +14,12 @@ namespace Brittany_wguC968
     public partial class modifyPartForm : Form
     {
         private Part part;
-        public modifyPartForm(Part part)
+        private Main mainForm;
+        public modifyPartForm(Main mainForm, Part part)
         {
             InitializeComponent();
             this.part = part;
+            this.mainForm = mainForm;
 
             IDtextBox.Text = part.PartID.ToString();
             txtPartName.Text = part.Name;
@@ -83,7 +85,7 @@ namespace Brittany_wguC968
                 return;
             }
             Part oldPartID = Inventory.LookupPart(part.PartID);
-            Inventory.UpdatePart(oldPartID, newPart);
+            Inventory.UpdatePart(mainForm, oldPartID, newPart);
   
             MessageBox.Show("Changes saved SuccessFully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();

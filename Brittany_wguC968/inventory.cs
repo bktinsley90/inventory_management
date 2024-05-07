@@ -123,7 +123,7 @@ namespace Brittany_wguC968
             Part emptyPart = new InHouse();
             return emptyPart;
         }
-        public static void UpdatePart(Part oldPart, Part updatedPart)
+        public static void UpdatePart(Main mainForm, Part oldPart, Part updatedPart)
         {
            DeletePart(oldPart);
            AddPart(updatedPart);

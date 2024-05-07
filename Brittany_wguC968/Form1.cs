@@ -58,11 +58,11 @@ namespace Brittany_wguC968
             {
                 if (dataGridView1.CurrentRow.DataBoundItem is InHouse inHouse)
                 {
-                    new modifyPartForm(inHouse).Show();
+                    new modifyPartForm(this, inHouse).Show();
                 }
                 else if (dataGridView1.CurrentRow.DataBoundItem is Outsourced outsourced)
                 {
-                    new modifyPartForm(outsourced).Show();
+                    new modifyPartForm(this, outsourced).Show();
                 }
                 else
                 {
