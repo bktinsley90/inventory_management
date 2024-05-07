@@ -38,7 +38,7 @@
             label8 = new Label();
             saveBtn = new Button();
             cancelBtn = new Button();
-            textBox1 = new TextBox();
+            IDtextBox = new TextBox();
             txtPartName = new TextBox();
             numInventory = new TextBox();
             numPrice = new TextBox();
@@ -139,12 +139,13 @@
             cancelBtn.Text = "Cancel";
             cancelBtn.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // IDtextBox
             // 
-            textBox1.Location = new Point(148, 42);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(100, 23);
-            textBox1.TabIndex = 10;
+            IDtextBox.Enabled = false;
+            IDtextBox.Location = new Point(148, 42);
+            IDtextBox.Name = "IDtextBox";
+            IDtextBox.Size = new Size(100, 23);
+            IDtextBox.TabIndex = 10;
             // 
             // txtPartName
             // 
@@ -223,7 +224,7 @@
             Controls.Add(numPrice);
             Controls.Add(numInventory);
             Controls.Add(txtPartName);
-            Controls.Add(textBox1);
+            Controls.Add(IDtextBox);
             Controls.Add(cancelBtn);
             Controls.Add(saveBtn);
             Controls.Add(label8);
@@ -252,7 +253,7 @@
         private Label label8;
         private Button saveBtn;
         private Button cancelBtn;
-        private TextBox textBox1;
+        private TextBox IDtextBox;
         private TextBox txtPartName;
         private TextBox numInventory;
         private TextBox numPrice;

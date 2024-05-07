@@ -67,8 +67,25 @@ namespace Brittany_wguC968
         }
         private void ModProdBtn_Click(object sender, EventArgs e)
         {
-            modifyProductForm modifyProductForm = new modifyProductForm();
-            modifyProductForm.Show();
+            if (dataGridView1.CurrentRow != null)
+            {
+                if(dataGridView1.CurrentRow.DataBoundItem is InHouse inHouse)
+                {
+                    new modifyPartForm(inHouse).Show();
+                }
+                else if (dataGridView1.CurrentRow.DataBoundItem is Outsourced outsourced)
+                {
+                    new modifyPartForm(outsourced).Show();
+                }
+                else
+                {
+                    MessageBox.Show("Unexpected part type selected");
+                }
+            }
+            else
+            {
+                MessageBox.Show("No Part selected.");
+            }
         }
         private void DeletePartBtn_CLick(object sender, EventArgs e)
         {
