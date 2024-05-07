@@ -57,19 +57,9 @@ namespace Brittany_wguC968
         }
         private void ModPartBtn_Click(object sender, EventArgs e)
         {
-            modifyPartForm modifyPartForm = new modifyPartForm();
-            modifyPartForm.Show();
-        }
-        private void AddProdBtn_CLick(object sender, EventArgs e)
-        {
-            addProductForm addProductForm = new addProductForm();
-            addProductForm.Show();
-        }
-        private void ModProdBtn_Click(object sender, EventArgs e)
-        {
             if (dataGridView1.CurrentRow != null)
             {
-                if(dataGridView1.CurrentRow.DataBoundItem is InHouse inHouse)
+                if (dataGridView1.CurrentRow.DataBoundItem is InHouse inHouse)
                 {
                     new modifyPartForm(inHouse).Show();
                 }
@@ -86,6 +76,15 @@ namespace Brittany_wguC968
             {
                 MessageBox.Show("No Part selected.");
             }
+        }
+        private void AddProdBtn_CLick(object sender, EventArgs e)
+        {
+            addProductForm addProductForm = new addProductForm();
+            addProductForm.Show();
+        }
+        private void ModProdBtn_Click(object sender, EventArgs e)
+        {
+           
         }
         private void DeletePartBtn_CLick(object sender, EventArgs e)
         {

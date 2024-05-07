@@ -46,7 +46,8 @@
             numMin = new TextBox();
             inHouseRadioBtn = new RadioButton();
             outSourcedRadioBtn = new RadioButton();
-            textBox7 = new TextBox();
+            numMachineID = new TextBox();
+            txtCompanyName = new TextBox();
             SuspendLayout();
             // 
             // label1
@@ -129,6 +130,7 @@
             saveBtn.TabIndex = 8;
             saveBtn.Text = "Save";
             saveBtn.UseVisualStyleBackColor = true;
+            saveBtn.Click += savePartBtn_Click;
             // 
             // cancelBtn
             // 
@@ -138,6 +140,7 @@
             cancelBtn.TabIndex = 9;
             cancelBtn.Text = "Cancel";
             cancelBtn.UseVisualStyleBackColor = true;
+            cancelBtn.Click += CancelBtn_Click;
             // 
             // IDtextBox
             // 
@@ -192,6 +195,7 @@
             inHouseRadioBtn.TabStop = true;
             inHouseRadioBtn.Text = "In-House";
             inHouseRadioBtn.UseVisualStyleBackColor = true;
+            inHouseRadioBtn.CheckedChanged += inHouseRadioBtn_CheckedChanged;
             // 
             // outSourcedRadioBtn
             // 
@@ -203,20 +207,30 @@
             outSourcedRadioBtn.TabStop = true;
             outSourcedRadioBtn.Text = "OutSourced";
             outSourcedRadioBtn.UseVisualStyleBackColor = true;
+            outSourcedRadioBtn.CheckedChanged += outSourcedRadioBtn_CheckedChanged;
             // 
-            // textBox7
+            // numMachineID
             // 
-            textBox7.Location = new Point(148, 244);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(100, 23);
-            textBox7.TabIndex = 18;
+            numMachineID.Location = new Point(148, 244);
+            numMachineID.Name = "numMachineID";
+            numMachineID.Size = new Size(100, 23);
+            numMachineID.TabIndex = 18;
+            // 
+            // txtCompanyName
+            // 
+            txtCompanyName.Location = new Point(148, 244);
+            txtCompanyName.Name = "txtCompanyName";
+            txtCompanyName.Size = new Size(100, 23);
+            txtCompanyName.TabIndex = 19;
+            txtCompanyName.Visible = false;
             // 
             // modifyPartForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(424, 383);
-            Controls.Add(textBox7);
+            Controls.Add(txtCompanyName);
+            Controls.Add(numMachineID);
             Controls.Add(outSourcedRadioBtn);
             Controls.Add(inHouseRadioBtn);
             Controls.Add(numMin);
@@ -261,6 +275,7 @@
         private TextBox numMin;
         private RadioButton inHouseRadioBtn;
         private RadioButton outSourcedRadioBtn;
-        private TextBox textBox7;
+        private TextBox numMachineID;
+        private TextBox txtCompanyName;
     }
 }

@@ -28,10 +28,10 @@ namespace Brittany_wguC968
         public static void sampleParts()
         {
             
-            Part example1 = new InHouse { PartID = 1, Name = "Wheel", InStock = 15, Price = 12.11m, Min = 5, Max = 25 };
-            Part example2 = new InHouse { PartID = 2, Name = "Pedal", InStock = 11, Price = 8.22m, Min = 5, Max = 25 };
-            Part example3 = new InHouse { PartID = 3, Name = "Cochain", InStock = 12, Price = 8.33m, Min = 5, Max = 25 };
-            Part example4 = new InHouse { PartID = 4, Name = "Seat", InStock = 8, Price = 4.55m, Min = 2, Max = 15 };
+            Part example1 = new InHouse { PartID = 1, Name = "Wheel", InStock = 15, Price = 12.11m, Min = 5, Max = 25, MachineID = 5454 };
+            Part example2 = new InHouse { PartID = 2, Name = "Pedal", InStock = 11, Price = 8.22m, Min = 5, Max=25, MachineID= 1234};
+            Part example3 = new InHouse { PartID = 3, Name = "Cochain", InStock = 12, Price = 8.33m, Min = 5, Max = 25, MachineID = 5678 };
+            Part example4 = new InHouse { PartID = 4, Name = "Seat", InStock = 8, Price = 4.55m, Min = 2, Max = 15, MachineID = 9876 };
             AddPart(example1);
             AddPart(example2);
             AddPart(example3);
