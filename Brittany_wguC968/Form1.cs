@@ -19,10 +19,7 @@ namespace Brittany_wguC968
             PopulateDataGridViews();
         }
 
-
-
-
-        private void PopulateDataGridViews()
+        public void PopulateDataGridViews()
         {
             var partsTable = new BindingSource();
             var productTable = new BindingSource();

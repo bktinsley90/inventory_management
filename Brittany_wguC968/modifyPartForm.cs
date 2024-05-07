@@ -26,7 +26,7 @@ namespace Brittany_wguC968
             numMin.Text = part.Min.ToString();
             numMax.Text = part.Max.ToString();
 
-            if(part is InHouse inHouse)
+            if (part is InHouse inHouse)
             {
                 numMachineID.Text = inHouse.MachineID.ToString();
                 inHouseRadioBtn.Checked = true;
@@ -48,29 +48,47 @@ namespace Brittany_wguC968
 
             Part newPart;
 
+
+
             if (part is InHouse inHouse)
             {
 
-                newPart = new Inhouse
+                newPart = new InHouse
                 {
-                    //part.PartID = Inventory.LookupPart(part.PartID.ToString());
-                part.Name = txtPartName.Text;
-                part.InStock = ParseInt(numInventory.Text);
-                part.Price = decimal.Parse(numPrice.Text);
-                part.Min = ParseInt(numMin.Text);
-                part.Max = ParseInt(numMax.Text);
-                inHouse.MachineID = ParseInt(numMachineID.Text);
-                 };
-            }
-                
+                    PartID = part.PartID,
+                    Name = txtPartName.Text,
+                    InStock = ParseInt(numInventory.Text),
+                    Price = decimal.Parse(numPrice.Text),
+                    Min = ParseInt(numMin.Text),
+                    Max = ParseInt(numMax.Text),
+                    MachineID = ParseInt(numMachineID.Text)
+                };
             }
             else if (part is Outsourced outsourced)
             {
-                outsourced.CompanyName = txtCompanyName.Text;
+                newPart = new Outsourced
+                {
+                    PartID = part.PartID,
+                    Name = txtPartName.Text,
+                    InStock = ParseInt(numInventory.Text),
+                    Price = decimal.Parse(numPrice.Text),
+                    Min = ParseInt(numMin.Text),
+                    Max = ParseInt(numMax.Text),
+                    CompanyName = txtCompanyName.Text
+                };
             }
+            else
+            {
+                MessageBox.Show("Unexpected part type.");
+                return;
+            }
+            Part oldPartID = Inventory.LookupPart(part.PartID);
+            Inventory.UpdatePart(oldPartID, newPart);
+  
             MessageBox.Show("Changes saved SuccessFully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();
         }
+
         private void inHouseRadioBtn_CheckedChanged(object sender, EventArgs e)
         {
             if (inHouseRadioBtn.Checked)

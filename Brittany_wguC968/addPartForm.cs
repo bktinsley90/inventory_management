@@ -21,9 +21,7 @@ namespace Brittany_wguC968
             InitializeComponent();
 
             this.mainForm = mainForm;
-
-            
-            
+   
         }
       
         private int ParseInt(string x)

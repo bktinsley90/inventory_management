@@ -15,16 +15,8 @@ namespace Brittany_wguC968
         public static BindingList<Product> ProductList { get { return Products; } }
         public static BindingList<Part> AllParts { get; } = new BindingList<Part>();
         public static BindingList<Part> PartsList { get {return AllParts; }}
-
-        public List<Product> GetProducts()
-        {
-            return Products.ToList();
-        }
-        public List<Part> GetParts()
-        {
-            return AllParts.ToList();
-        }
- 
+        Main mainForm = Application.OpenForms.OfType<Main>().FirstOrDefault();
+  
         public static void sampleParts()
         {
             
@@ -102,7 +94,8 @@ namespace Brittany_wguC968
             var existingPart = AllParts.FirstOrDefault(p => p.PartID == part.PartID);
             if (existingPart != null)
             {
-                throw new InvalidOperationException("A part with the same PartID already exists");
+                AllParts.Add(part);
+                //throw new InvalidOperationException("A part with the same PartID already exists");
             }
             else
             {
@@ -123,23 +116,20 @@ namespace Brittany_wguC968
         }
         public static Part LookupPart(int partID)
         {
-            foreach (var part in AllParts)
+            foreach (Part part in AllParts)
             {
-                if (part.PartID == partID)
-                {
-                    return part;
-                }
+                if (part.PartID == partID) return part;
             }
-            return null;
+            Part emptyPart = new InHouse();
+            return emptyPart;
         }
-        public static void UpdatePart(int partID, Part newPart)
+        public static void UpdatePart(Part oldPart, Part updatedPart)
         {
-            var partToUpdate = LookupPart(partID);
-            if (partToUpdate != null)
-            {
-                partToUpdate.Name = newPart.Name;
-                partToUpdate.Price = newPart.Price;
-            }
+           DeletePart(oldPart);
+           AddPart(updatedPart);
+
+
+           mainForm.PopulateDataGridViews();
         }
 
 
