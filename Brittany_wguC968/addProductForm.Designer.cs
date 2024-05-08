@@ -35,22 +35,22 @@
             label5 = new Label();
             label6 = new Label();
             label7 = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
-            textBox5 = new TextBox();
-            textBox6 = new TextBox();
+            productIDtxtBox = new TextBox();
+            productName = new TextBox();
+            numInventory = new TextBox();
+            numPrice = new TextBox();
+            numMax = new TextBox();
+            numMin = new TextBox();
             saveProductBtn = new Button();
             cancelProductBtn = new Button();
-            button3 = new Button();
+            deletePartsBtn = new Button();
             dataGridView1 = new DataGridView();
             dataGridView2 = new DataGridView();
             label8 = new Label();
             label9 = new Label();
-            button4 = new Button();
+            searchPartsBtn = new Button();
             addProductBtn = new Button();
-            textBox7 = new TextBox();
+            searchPartsTxtBox = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             SuspendLayout();
@@ -99,7 +99,6 @@
             label5.Size = new Size(33, 15);
             label5.TabIndex = 4;
             label5.Text = "Price";
-            label5.Click += label5_Click;
             // 
             // label6
             // 
@@ -119,47 +118,47 @@
             label7.TabIndex = 6;
             label7.Text = "Min";
             // 
-            // textBox1
+            // productIDtxtBox
             // 
-            textBox1.Location = new Point(91, 76);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(100, 23);
-            textBox1.TabIndex = 7;
+            productIDtxtBox.Location = new Point(91, 76);
+            productIDtxtBox.Name = "productIDtxtBox";
+            productIDtxtBox.Size = new Size(100, 23);
+            productIDtxtBox.TabIndex = 7;
             // 
-            // textBox2
+            // productName
             // 
-            textBox2.Location = new Point(91, 120);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(100, 23);
-            textBox2.TabIndex = 8;
+            productName.Location = new Point(91, 120);
+            productName.Name = "productName";
+            productName.Size = new Size(100, 23);
+            productName.TabIndex = 8;
             // 
-            // textBox3
+            // numInventory
             // 
-            textBox3.Location = new Point(91, 160);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(100, 23);
-            textBox3.TabIndex = 9;
+            numInventory.Location = new Point(91, 160);
+            numInventory.Name = "numInventory";
+            numInventory.Size = new Size(100, 23);
+            numInventory.TabIndex = 9;
             // 
-            // textBox4
+            // numPrice
             // 
-            textBox4.Location = new Point(91, 198);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(100, 23);
-            textBox4.TabIndex = 10;
+            numPrice.Location = new Point(91, 198);
+            numPrice.Name = "numPrice";
+            numPrice.Size = new Size(100, 23);
+            numPrice.TabIndex = 10;
             // 
-            // textBox5
+            // numMax
             // 
-            textBox5.Location = new Point(91, 237);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(46, 23);
-            textBox5.TabIndex = 11;
+            numMax.Location = new Point(91, 237);
+            numMax.Name = "numMax";
+            numMax.Size = new Size(46, 23);
+            numMax.TabIndex = 11;
             // 
-            // textBox6
+            // numMin
             // 
-            textBox6.Location = new Point(197, 237);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(48, 23);
-            textBox6.TabIndex = 12;
+            numMin.Location = new Point(197, 237);
+            numMin.Name = "numMin";
+            numMin.Size = new Size(48, 23);
+            numMin.TabIndex = 12;
             // 
             // saveProductBtn
             // 
@@ -178,15 +177,16 @@
             cancelProductBtn.TabIndex = 14;
             cancelProductBtn.Text = "Cancel";
             cancelProductBtn.UseVisualStyleBackColor = true;
+            cancelProductBtn.Click += CancelBtn_Click;
             // 
-            // button3
+            // deletePartsBtn
             // 
-            button3.Location = new Point(688, 418);
-            button3.Name = "button3";
-            button3.Size = new Size(75, 23);
-            button3.TabIndex = 15;
-            button3.Text = "Delete";
-            button3.UseVisualStyleBackColor = true;
+            deletePartsBtn.Location = new Point(688, 418);
+            deletePartsBtn.Name = "deletePartsBtn";
+            deletePartsBtn.Size = new Size(75, 23);
+            deletePartsBtn.TabIndex = 15;
+            deletePartsBtn.Text = "Delete";
+            deletePartsBtn.UseVisualStyleBackColor = true;
             // 
             // dataGridView1
             // 
@@ -222,14 +222,14 @@
             label9.TabIndex = 19;
             label9.Text = "All Candidate Parts";
             // 
-            // button4
+            // searchPartsBtn
             // 
-            button4.Location = new Point(573, 13);
-            button4.Name = "button4";
-            button4.Size = new Size(75, 23);
-            button4.TabIndex = 20;
-            button4.Text = "Search";
-            button4.UseVisualStyleBackColor = true;
+            searchPartsBtn.Location = new Point(573, 13);
+            searchPartsBtn.Name = "searchPartsBtn";
+            searchPartsBtn.Size = new Size(75, 23);
+            searchPartsBtn.TabIndex = 20;
+            searchPartsBtn.Text = "Search";
+            searchPartsBtn.UseVisualStyleBackColor = true;
             // 
             // addProductBtn
             // 
@@ -240,34 +240,34 @@
             addProductBtn.Text = "Add";
             addProductBtn.UseVisualStyleBackColor = true;
             // 
-            // textBox7
+            // searchPartsTxtBox
             // 
-            textBox7.Location = new Point(663, 14);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(100, 23);
-            textBox7.TabIndex = 22;
+            searchPartsTxtBox.Location = new Point(663, 14);
+            searchPartsTxtBox.Name = "searchPartsTxtBox";
+            searchPartsTxtBox.Size = new Size(100, 23);
+            searchPartsTxtBox.TabIndex = 22;
             // 
             // addProductForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 492);
-            Controls.Add(textBox7);
+            Controls.Add(searchPartsTxtBox);
             Controls.Add(addProductBtn);
-            Controls.Add(button4);
+            Controls.Add(searchPartsBtn);
             Controls.Add(label9);
             Controls.Add(label8);
             Controls.Add(dataGridView2);
             Controls.Add(dataGridView1);
-            Controls.Add(button3);
+            Controls.Add(deletePartsBtn);
             Controls.Add(cancelProductBtn);
             Controls.Add(saveProductBtn);
-            Controls.Add(textBox6);
-            Controls.Add(textBox5);
-            Controls.Add(textBox4);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(numMin);
+            Controls.Add(numMax);
+            Controls.Add(numPrice);
+            Controls.Add(numInventory);
+            Controls.Add(productName);
+            Controls.Add(productIDtxtBox);
             Controls.Add(label7);
             Controls.Add(label6);
             Controls.Add(label5);
@@ -292,21 +292,21 @@
         private Label label5;
         private Label label6;
         private Label label7;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private TextBox textBox4;
-        private TextBox textBox5;
-        private TextBox textBox6;
+        private TextBox productIDtxtBox;
+        private TextBox productName;
+        private TextBox numInventory;
+        private TextBox numPrice;
+        private TextBox numMax;
+        private TextBox numMin;
         private Button saveProductBtn;
         private Button cancelProductBtn;
-        private Button button3;
+        private Button deletePartsBtn;
         private DataGridView dataGridView1;
         private DataGridView dataGridView2;
         private Label label8;
         private Label label9;
-        private Button button4;
+        private Button searchPartsBtn;
         private Button addProductBtn;
-        private TextBox textBox7;
+        private TextBox searchPartsTxtBox;
     }
 }
