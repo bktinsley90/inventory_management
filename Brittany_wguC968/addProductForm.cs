@@ -14,14 +14,15 @@ namespace Brittany_wguC968
     {
         private Main mainForm;
         private Product product = new Product();
+        private BindingList<Part> associatedPartsBindingList;
         public addProductForm(Main mainForm, Inventory inventory)
         {
             InitializeComponent();
             this.mainForm = mainForm;
 
-
+            associatedPartsBindingList = new BindingList<Part>(product.AssociatedParts.ToList());
             dataGridView1.DataSource = Inventory.AllParts;
-            dataGridView2.DataSource = product.AssociatedParts;
+            dataGridView2.DataSource = associatedPartsBindingList;
             CustomizeDataGridView(dataGridView1);
             CustomizeDataGridView(dataGridView2);
         }
@@ -42,6 +43,7 @@ namespace Brittany_wguC968
             {
                 Part selectedPart = dataGridView1.SelectedRows[0].DataBoundItem as Part;
                 product.AddAssociatedPart(selectedPart);
+                associatedPartsBindingList.Add(selectedPart);
             }
         }
         private void DeleteAssociatedPart_Click(object sender, EventArgs e)
@@ -51,6 +53,7 @@ namespace Brittany_wguC968
             {
                 Part selectedPart = dataGridView1.SelectedRows[0].DataBoundItem as Part;
                 product.RemoveAssociatedPart(selectedPart);
+                associatedPartsBindingList.Remove(selectedPart);
             }
             else return;
            
@@ -91,7 +94,7 @@ namespace Brittany_wguC968
         private void SaveProductBtn_Click(object sender, EventArgs e)
         {
             string productName = productNameTxt.Text;
-            int inStock = ParseInt(numInventory.Text);
+            int InStock = ParseInt(numInventory.Text);
             decimal price = decimal.Parse(numPrice.Text);
             int min = ParseInt(numMin.Text);
             int max = ParseInt(numMax.Text);
@@ -101,7 +104,7 @@ namespace Brittany_wguC968
                 MessageBox.Show("At least one part must be associated with the product.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            Product newProduct = new Product(productName, inStock, price, min, max);
+            Product newProduct = new Product(productName, InStock, price, min, max);
 
             Inventory.AddProduct(newProduct);
             this.Close();
