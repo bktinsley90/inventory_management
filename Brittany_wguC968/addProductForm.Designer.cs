@@ -239,6 +239,7 @@
             addProductBtn.TabIndex = 21;
             addProductBtn.Text = "Add";
             addProductBtn.UseVisualStyleBackColor = true;
+            addProductBtn.Click += addProductBtn_Click;
             // 
             // searchPartsTxtBox
             // 

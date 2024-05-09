@@ -9,7 +9,9 @@ namespace Brittany_wguC968
 {
     public class Product
     {
-        public BindingList<Part>? AssociatedParts = new BindingList<Part>();
+        public BindingList<Part>? AssociatedParts { get; } =
+        new BindingList<Part>();
+
         private int productID;
         private string name;
         private decimal price;

@@ -12,15 +12,14 @@ namespace Brittany_wguC968
 {
     public partial class addProductForm : Form
     {
-      
-        private BindingList<Part> selectedParts = new BindingList<Part>();
+        private Product product = new Product();
         public addProductForm()
         {
             InitializeComponent();
             
 
             dataGridView1.DataSource = Inventory.AllParts;
-            dataGridView2.DataSource = selectedParts;
+            dataGridView2.DataSource = product.AssociatedParts;
             CustomizeDataGridView(dataGridView1);
             CustomizeDataGridView(dataGridView2);
         }
@@ -35,6 +34,14 @@ namespace Brittany_wguC968
             dataGridView.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
         }
 
+        private void addProductBtn_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                Part selectedPart = dataGridView1.SelectedRows[0].DataBoundItem as Part;
+                product.AddAssociatedPart(selectedPart);
+            }
+        }
         private void CancelBtn_Click(object sender, EventArgs e)
         {
             Close();
