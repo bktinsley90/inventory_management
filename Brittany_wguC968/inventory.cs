@@ -53,7 +53,38 @@ namespace Brittany_wguC968
 
             return nextPartID;
         }
+        private static int nextProductID;
+        public static int GenerateProductID()
+        {
+            if (Products.Count > 0)
+            {
+                int maxProductID = Products.Max(product => product.ProductID);
+                nextProductID = maxProductID + 1;
+            }
+            else
+            {
+                nextProductID = 1;
+            }
 
+            return nextProductID;
+        }
+        public static void AddProduct(Product product)
+        {
+
+            var existingPart = Products.FirstOrDefault(p => p.ProductID == product.ProductID);
+            if (existingPart != null)
+            {
+                Products.Add(product);
+                
+            }
+            else
+            {
+                int newProductID = GenerateProductID();
+                product.ProductID = newProductID;
+                Products.Add(product);
+
+            }
+        }
         public static bool RemoveProduct(int productID)
         {
             Product productToRemove = null;
@@ -95,7 +126,7 @@ namespace Brittany_wguC968
             if (existingPart != null)
             {
                 AllParts.Add(part);
-                //throw new InvalidOperationException("A part with the same PartID already exists");
+                
             }
             else
             {
@@ -106,10 +137,7 @@ namespace Brittany_wguC968
             }
  
         }
-        public static void AddProduct(Product product)
-        {
-            Products.Add(product);
-        }
+      
         public static bool DeletePart(Part part)
         {
             return AllParts.Remove(part);

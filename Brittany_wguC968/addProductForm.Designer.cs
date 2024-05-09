@@ -36,7 +36,7 @@
             label6 = new Label();
             label7 = new Label();
             productIDtxtBox = new TextBox();
-            productName = new TextBox();
+            productNameTxt = new TextBox();
             numInventory = new TextBox();
             numPrice = new TextBox();
             numMax = new TextBox();
@@ -50,7 +50,7 @@
             label9 = new Label();
             searchPartsBtn = new Button();
             addProductBtn = new Button();
-            searchPartsTxtBox = new TextBox();
+            searchPartTextBox = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             SuspendLayout();
@@ -120,17 +120,18 @@
             // 
             // productIDtxtBox
             // 
+            productIDtxtBox.Enabled = false;
             productIDtxtBox.Location = new Point(91, 76);
             productIDtxtBox.Name = "productIDtxtBox";
             productIDtxtBox.Size = new Size(100, 23);
             productIDtxtBox.TabIndex = 7;
             // 
-            // productName
+            // productNameTxt
             // 
-            productName.Location = new Point(91, 120);
-            productName.Name = "productName";
-            productName.Size = new Size(100, 23);
-            productName.TabIndex = 8;
+            productNameTxt.Location = new Point(91, 120);
+            productNameTxt.Name = "productNameTxt";
+            productNameTxt.Size = new Size(100, 23);
+            productNameTxt.TabIndex = 8;
             // 
             // numInventory
             // 
@@ -168,6 +169,7 @@
             saveProductBtn.TabIndex = 13;
             saveProductBtn.Text = "Save";
             saveProductBtn.UseVisualStyleBackColor = true;
+            saveProductBtn.Click += SaveProductBtn_Click;
             // 
             // cancelProductBtn
             // 
@@ -187,6 +189,7 @@
             deletePartsBtn.TabIndex = 15;
             deletePartsBtn.Text = "Delete";
             deletePartsBtn.UseVisualStyleBackColor = true;
+            deletePartsBtn.Click += DeleteAssociatedPart_Click;
             // 
             // dataGridView1
             // 
@@ -230,6 +233,7 @@
             searchPartsBtn.TabIndex = 20;
             searchPartsBtn.Text = "Search";
             searchPartsBtn.UseVisualStyleBackColor = true;
+            searchPartsBtn.Click += SearchPartBtn_Click;
             // 
             // addProductBtn
             // 
@@ -241,19 +245,19 @@
             addProductBtn.UseVisualStyleBackColor = true;
             addProductBtn.Click += addProductBtn_Click;
             // 
-            // searchPartsTxtBox
+            // searchPartTextBox
             // 
-            searchPartsTxtBox.Location = new Point(663, 14);
-            searchPartsTxtBox.Name = "searchPartsTxtBox";
-            searchPartsTxtBox.Size = new Size(100, 23);
-            searchPartsTxtBox.TabIndex = 22;
+            searchPartTextBox.Location = new Point(663, 14);
+            searchPartTextBox.Name = "searchPartTextBox";
+            searchPartTextBox.Size = new Size(100, 23);
+            searchPartTextBox.TabIndex = 22;
             // 
             // addProductForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 492);
-            Controls.Add(searchPartsTxtBox);
+            Controls.Add(searchPartTextBox);
             Controls.Add(addProductBtn);
             Controls.Add(searchPartsBtn);
             Controls.Add(label9);
@@ -267,7 +271,7 @@
             Controls.Add(numMax);
             Controls.Add(numPrice);
             Controls.Add(numInventory);
-            Controls.Add(productName);
+            Controls.Add(productNameTxt);
             Controls.Add(productIDtxtBox);
             Controls.Add(label7);
             Controls.Add(label6);
@@ -294,7 +298,7 @@
         private Label label6;
         private Label label7;
         private TextBox productIDtxtBox;
-        private TextBox productName;
+        private TextBox productNameTxt;
         private TextBox numInventory;
         private TextBox numPrice;
         private TextBox numMax;
@@ -308,6 +312,6 @@
         private Label label9;
         private Button searchPartsBtn;
         private Button addProductBtn;
-        private TextBox searchPartsTxtBox;
+        private TextBox searchPartTextBox;
     }
 }

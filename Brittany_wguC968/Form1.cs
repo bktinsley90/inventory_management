@@ -71,12 +71,12 @@ namespace Brittany_wguC968
             }
             else
             {
-                MessageBox.Show("No Part selected.");
+                MessageBox.Show("Must select a Part!");
             }
         }
         private void AddProdBtn_CLick(object sender, EventArgs e)
         {
-            addProductForm addProductForm = new addProductForm();
+            addProductForm addProductForm = new addProductForm(this, Inventory);
             addProductForm.Show();
         }
         private void ModProdBtn_Click(object sender, EventArgs e)

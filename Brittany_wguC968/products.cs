@@ -25,32 +25,22 @@ namespace Brittany_wguC968
         public int InStock { get; set; }
         public int Min { get; set; }
         public int Max { get; set; }
-        
+        public string ProductName { get; }
+
         public Product() { }
-        public Product(int prodID, string name, int instock,decimal price, int min, int max)
+     
+        public Product(string productName, int inStock, decimal price, int min, int max)
         {
-            ProductID = prodID;
-            Name = name;
-            Instock = instock;
-            Price = price;
-            Min = min;
-            Max = max;
+            ProductName = productName;
+            Instock = inStock;
+            this.price = price;
+            this.min = min;
+            this.max = max;
         }
 
         public void AddAssociatedPart(Part part) => AssociatedParts.Add(part);
-        public bool RemoveAssociatedPart(int partID)
-        {
-            Part partToRemove = null;
-            foreach (var part in AssociatedParts)
-            {
-                if (part.PartID == partID)
-                {
-                    partToRemove = part;
-                    break;
-                }
-            }
-            return partToRemove != null && AssociatedParts.Remove(partToRemove);
-        }
+        public bool RemoveAssociatedPart(Part part) =>  AssociatedParts.Remove(part);
+        
         public Part LookupAssociatedPart(int partID)
         {
             foreach (var part in AssociatedParts)
