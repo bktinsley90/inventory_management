@@ -84,13 +84,17 @@ namespace Brittany_wguC968
                 dataGridView1.DataSource = parts;
             }
         }
+        private int ParseInt(string x)
+        {
+            return int.Parse(x);
+        }
         private void SaveProductBtn_Click(object sender, EventArgs e)
         {
             string productName = productNameTxt.Text;
-            int inStock = Convert.ToInt32(numInventory);
-            decimal price = Convert.ToDecimal(numPrice);
-            int min = Convert.ToInt32(numMin);
-            int max = Convert.ToInt32(numMax);
+            int inStock = ParseInt(numInventory.Text);
+            decimal price = decimal.Parse(numPrice.Text);
+            int min = ParseInt(numMin.Text);
+            int max = ParseInt(numMax.Text);
 
             if(dataGridView2.Rows.Count == 0)
             {
