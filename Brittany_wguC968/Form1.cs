@@ -81,7 +81,21 @@ namespace Brittany_wguC968
         }
         private void ModProdBtn_Click(object sender, EventArgs e)
         {
-           
+           if (dataGridView2.CurrentRow != null)
+            {
+                if (dataGridView2.CurrentRow.DataBoundItem is Product selectedProduct)
+                {
+                    new modifyProductForm(this, selectedProduct).Show();
+                }
+                else
+                {
+                    MessageBox.Show("Unexpected product type selected");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Must select a Product!");
+            }
         }
         private void DeletePartBtn_CLick(object sender, EventArgs e)
         {

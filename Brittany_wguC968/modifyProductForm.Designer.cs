@@ -35,18 +35,18 @@
             label5 = new Label();
             label6 = new Label();
             label7 = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
-            textBox5 = new TextBox();
-            textBox6 = new TextBox();
+            IDtextBox = new TextBox();
+            productNameTxt = new TextBox();
+            numInventory = new TextBox();
+            numPrice = new TextBox();
+            numMax = new TextBox();
+            numMin = new TextBox();
             label8 = new Label();
             cancelProductBtn = new Button();
             saveProductBtn = new Button();
-            button3 = new Button();
+            deletePartBtn = new Button();
             button4 = new Button();
-            textBox7 = new TextBox();
+            searchPartTextBox = new TextBox();
             dataGridView1 = new DataGridView();
             dataGridView2 = new DataGridView();
             label9 = new Label();
@@ -63,7 +63,6 @@
             label1.Size = new Size(90, 15);
             label1.TabIndex = 0;
             label1.Text = "Modify Product";
-            label1.Click += label1_Click;
             // 
             // label2
             // 
@@ -73,7 +72,6 @@
             label2.Size = new Size(18, 15);
             label2.TabIndex = 1;
             label2.Text = "ID";
-            label2.Click += label2_Click;
             // 
             // label3
             // 
@@ -101,7 +99,6 @@
             label5.Size = new Size(33, 15);
             label5.TabIndex = 4;
             label5.Text = "Price";
-            label5.Click += label5_Click;
             // 
             // label6
             // 
@@ -121,47 +118,48 @@
             label7.TabIndex = 6;
             label7.Text = "Min";
             // 
-            // textBox1
+            // IDtextBox
             // 
-            textBox1.Location = new Point(99, 82);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(100, 23);
-            textBox1.TabIndex = 7;
+            IDtextBox.Enabled = false;
+            IDtextBox.Location = new Point(99, 82);
+            IDtextBox.Name = "IDtextBox";
+            IDtextBox.Size = new Size(100, 23);
+            IDtextBox.TabIndex = 7;
             // 
-            // textBox2
+            // productNameTxt
             // 
-            textBox2.Location = new Point(99, 120);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(100, 23);
-            textBox2.TabIndex = 8;
+            productNameTxt.Location = new Point(99, 120);
+            productNameTxt.Name = "productNameTxt";
+            productNameTxt.Size = new Size(100, 23);
+            productNameTxt.TabIndex = 8;
             // 
-            // textBox3
+            // numInventory
             // 
-            textBox3.Location = new Point(99, 152);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(100, 23);
-            textBox3.TabIndex = 9;
+            numInventory.Location = new Point(99, 152);
+            numInventory.Name = "numInventory";
+            numInventory.Size = new Size(100, 23);
+            numInventory.TabIndex = 9;
             // 
-            // textBox4
+            // numPrice
             // 
-            textBox4.Location = new Point(99, 201);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(100, 23);
-            textBox4.TabIndex = 10;
+            numPrice.Location = new Point(99, 201);
+            numPrice.Name = "numPrice";
+            numPrice.Size = new Size(100, 23);
+            numPrice.TabIndex = 10;
             // 
-            // textBox5
+            // numMax
             // 
-            textBox5.Location = new Point(99, 244);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(46, 23);
-            textBox5.TabIndex = 11;
+            numMax.Location = new Point(99, 244);
+            numMax.Name = "numMax";
+            numMax.Size = new Size(46, 23);
+            numMax.TabIndex = 11;
             // 
-            // textBox6
+            // numMin
             // 
-            textBox6.Location = new Point(205, 244);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(54, 23);
-            textBox6.TabIndex = 12;
+            numMin.Location = new Point(205, 244);
+            numMin.Name = "numMin";
+            numMin.Size = new Size(54, 23);
+            numMin.TabIndex = 12;
             // 
             // label8
             // 
@@ -190,14 +188,14 @@
             saveProductBtn.Text = "Save";
             saveProductBtn.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // deletePartBtn
             // 
-            button3.Location = new Point(713, 424);
-            button3.Name = "button3";
-            button3.Size = new Size(75, 23);
-            button3.TabIndex = 16;
-            button3.Text = "Delete";
-            button3.UseVisualStyleBackColor = true;
+            deletePartBtn.Location = new Point(713, 424);
+            deletePartBtn.Name = "deletePartBtn";
+            deletePartBtn.Size = new Size(75, 23);
+            deletePartBtn.TabIndex = 16;
+            deletePartBtn.Text = "Delete";
+            deletePartBtn.UseVisualStyleBackColor = true;
             // 
             // button4
             // 
@@ -208,12 +206,12 @@
             button4.Text = "Search";
             button4.UseVisualStyleBackColor = true;
             // 
-            // textBox7
+            // searchPartTextBox
             // 
-            textBox7.Location = new Point(688, 15);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(100, 23);
-            textBox7.TabIndex = 18;
+            searchPartTextBox.Location = new Point(688, 15);
+            searchPartTextBox.Name = "searchPartTextBox";
+            searchPartTextBox.Size = new Size(100, 23);
+            searchPartTextBox.TabIndex = 18;
             // 
             // dataGridView1
             // 
@@ -258,18 +256,18 @@
             Controls.Add(label9);
             Controls.Add(dataGridView2);
             Controls.Add(dataGridView1);
-            Controls.Add(textBox7);
+            Controls.Add(searchPartTextBox);
             Controls.Add(button4);
-            Controls.Add(button3);
+            Controls.Add(deletePartBtn);
             Controls.Add(saveProductBtn);
             Controls.Add(cancelProductBtn);
             Controls.Add(label8);
-            Controls.Add(textBox6);
-            Controls.Add(textBox5);
-            Controls.Add(textBox4);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(numMin);
+            Controls.Add(numMax);
+            Controls.Add(numPrice);
+            Controls.Add(numInventory);
+            Controls.Add(productNameTxt);
+            Controls.Add(IDtextBox);
             Controls.Add(label7);
             Controls.Add(label6);
             Controls.Add(label5);
@@ -294,18 +292,18 @@
         private Label label5;
         private Label label6;
         private Label label7;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private TextBox textBox4;
-        private TextBox textBox5;
-        private TextBox textBox6;
+        private TextBox IDtextBox;
+        private TextBox productNameTxt;
+        private TextBox numInventory;
+        private TextBox numPrice;
+        private TextBox numMax;
+        private TextBox numMin;
         private Label label8;
         private Button cancelProductBtn;
         private Button saveProductBtn;
-        private Button button3;
+        private Button deletePartBtn;
         private Button button4;
-        private TextBox textBox7;
+        private TextBox searchPartTextBox;
         private DataGridView dataGridView1;
         private DataGridView dataGridView2;
         private Label label9;
