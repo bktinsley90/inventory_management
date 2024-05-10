@@ -43,7 +43,18 @@ namespace Brittany_wguC968
 
         public Part LookupAssociatedPart(int partID)
         {
-            return AssociatedParts.FirstOrDefault(part => part.PartID == partID);
+            foreach (var part in AssociatedParts)
+            { 
+                if (part.PartID == partID) 
+                {
+                    return part; 
+                }
+            }
+            return null;
+        }
+        public List<Part> LookupAssociatedParts()
+        {
+            return AssociatedParts.ToList();
         }
     }
 }

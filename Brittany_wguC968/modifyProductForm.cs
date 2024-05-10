@@ -35,7 +35,7 @@ namespace Brittany_wguC968
             CustomizeDataGridView(dataGridView1);
             CustomizeDataGridView(dataGridView2);
 
-
+            
             PopulateAssociatedPartsDataGridView();
         }
         private void CustomizeDataGridView(DataGridView dataGridView)
@@ -48,17 +48,13 @@ namespace Brittany_wguC968
         }
         private void PopulateAssociatedPartsDataGridView()
         {
-            
-            System.Collections.IList list = currProduct.AssociatedParts;
-            for (int i = 0; i < list.Count; i++)
+
+            List<Part> associatedParts = currProduct.LookupAssociatedParts();
+            associatedPartsBindingList.Clear();
+            foreach (Part associatedPart in associatedParts)
             {
-                int partId = (int)list[i];
-                Part associatedPart = currProduct.LookupAssociatedPart(partId);
-                if (associatedPart != null)
-                {
-                    dataGridView2.Rows.Add(associatedPart.PartID,  associatedPart.Name, associatedPart.InStock, associatedPart.Max, associatedPart.Min);
-                }
-            }
+                associatedPartsBindingList.Add(associatedPart);
+            }   
         }
         private void addProductBtn_Click(object sender, EventArgs e)
         {
