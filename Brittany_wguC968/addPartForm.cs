@@ -15,35 +15,32 @@ namespace Brittany_wguC968
     public partial class AddPartForm : Form
     {
         private Main mainForm;
- 
+
         public AddPartForm(Main mainForm, Inventory inventory)
         {
             InitializeComponent();
 
             this.mainForm = mainForm;
-   
+            saveBtn.Enabled = ValidateFields();
+
         }
-      
+
         private int ParseInt(string x)
         {
             return int.Parse(x);
         }
         public void btnSave_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtPartName.Text))
-            {
-                MessageBox.Show("Please enter a Part Name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+        
             //creating a new part
             Part newPart;
-            
+
 
             if (inHouseRadioBtn.Checked)
             {
                 newPart = new InHouse
                 {
-                    
+
                     Name = txtPartName.Text,
                     InStock = ParseInt(numInventory.Text),
                     Price = decimal.Parse(numPrice.Text),
@@ -56,7 +53,7 @@ namespace Brittany_wguC968
             {
                 newPart = new Outsourced
                 {
-                    
+
                     Name = txtPartName.Text,
                     InStock = ParseInt(numInventory.Text),
                     Price = decimal.Parse(numPrice.Text),
@@ -64,7 +61,7 @@ namespace Brittany_wguC968
                     Max = ParseInt(numMax.Text),
                     CompanyName = txtCompanyName.Text
                 };
-                
+
             }
             else
             {
@@ -79,10 +76,38 @@ namespace Brittany_wguC968
         {
             if (inHouseRadioBtn.Checked)
             {
-                label8.Text= "Machine ID";
+                label8.Text = "Machine ID";
                 numMachineID.Visible = true;
                 txtCompanyName.Visible = false;
             }
+        }
+        private bool ValidateFields()
+        {
+            bool isValid = false;
+            if (string.IsNullOrWhiteSpace(txtPartName.Text))
+            {
+                SetError(txtPartName, "Please enter a Part Name");
+                isValid = false;
+            }
+            else
+            {
+                ClearError(txtPartName);
+                isValid = true;
+            }
+
+
+            return isValid;
+        }
+        private void SetError(Control control, string msg)
+        {
+            toolTip1.SetToolTip(control, msg);
+            control.BackColor = Color.Salmon;
+
+        }
+        private void ClearError(Control control)
+        {
+            toolTip1.SetToolTip(control, "");
+            control.BackColor = Color.White;
         }
 
         private void outSourcedRadioBtn_CheckedChanged(object sender, EventArgs e)
@@ -99,7 +124,11 @@ namespace Brittany_wguC968
         {
             Close();
         }
-       
+
+        private void toolTip1_Popup(object sender, PopupEventArgs e)
+        {
+
+        }
     }
-   
+
 }

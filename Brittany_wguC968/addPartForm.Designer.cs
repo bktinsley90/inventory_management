@@ -50,6 +50,7 @@
             numMachineID = new TextBox();
             label8 = new Label();
             txtCompanyName = new TextBox();
+            toolTip1 = new ToolTip(components);
             SuspendLayout();
             // 
             // label1
@@ -210,7 +211,7 @@
             // 
             // numMachineID
             // 
-            numMachineID.Location = new Point(141, 292);
+            numMachineID.Location = new Point(159, 292);
             numMachineID.Name = "numMachineID";
             numMachineID.Size = new Size(100, 23);
             numMachineID.TabIndex = 17;
@@ -226,11 +227,15 @@
             // 
             // txtCompanyName
             // 
-            txtCompanyName.Location = new Point(141, 292);
+            txtCompanyName.Location = new Point(159, 292);
             txtCompanyName.Name = "txtCompanyName";
             txtCompanyName.Size = new Size(100, 23);
             txtCompanyName.TabIndex = 19;
             txtCompanyName.Visible = false;
+            // 
+            // toolTip1
+            // 
+            toolTip1.Popup += toolTip1_Popup;
             // 
             // AddPartForm
             // 
@@ -286,5 +291,6 @@
         private TextBox numMachineID;
         private Label label8;
         private TextBox txtCompanyName;
+        private ToolTip toolTip1;
     }
 }

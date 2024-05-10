@@ -211,14 +211,14 @@
             // 
             // numMachineID
             // 
-            numMachineID.Location = new Point(148, 244);
+            numMachineID.Location = new Point(171, 244);
             numMachineID.Name = "numMachineID";
             numMachineID.Size = new Size(100, 23);
             numMachineID.TabIndex = 18;
             // 
             // txtCompanyName
             // 
-            txtCompanyName.Location = new Point(148, 244);
+            txtCompanyName.Location = new Point(171, 244);
             txtCompanyName.Name = "txtCompanyName";
             txtCompanyName.Size = new Size(100, 23);
             txtCompanyName.TabIndex = 19;
