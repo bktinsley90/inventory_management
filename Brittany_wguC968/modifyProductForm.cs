@@ -101,6 +101,37 @@ namespace Brittany_wguC968
                 dataGridView1.DataSource = parts;
             }
         }
+        private int ParseInt(string x)
+        {
+            return int.Parse(x);
+        }
+        private void SaveProductBtn_Click(object sender, EventArgs e)
+        {
+            string productName = productNameTxt.Text;
+            int InStock = ParseInt(numInventory.Text);
+            decimal price = decimal.Parse(numPrice.Text);
+            int min = ParseInt(numMin.Text);
+            int max = ParseInt(numMax.Text);
+
+            if (dataGridView2.Rows.Count == 0)
+            {
+                MessageBox.Show("At least one part must be associated with the product.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            //creating new product
+            Product newProduct = new Product(productName, InStock, price, min, max);
+
+            Product oldProductID = Inventory.LookupProduct(productID);
+            Inventory.UpdateProduct(mainForm, oldProductID, newProduct);
+
+            newProduct.AssociatedParts.Clear();
+            foreach (Part part in associatedPartsBindingList)
+            {
+                newProduct.AddAssociatedPart(part);
+            }
+
+            this.Close();
+        }
         private void CancelBtn_Click(object sender, EventArgs e)
         {
             Close();
