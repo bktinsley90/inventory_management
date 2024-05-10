@@ -14,13 +14,13 @@ namespace Brittany_wguC968
     {
         private Main mainForm;
         private Product product = new Product();
-        private BindingList<Part> associatedPartsBindingList;
+        private BindingList<Part> associatedPartsBindingList = new BindingList<Part>();
         public addProductForm(Main mainForm, Inventory inventory)
         {
             InitializeComponent();
             this.mainForm = mainForm;
 
-            associatedPartsBindingList = new BindingList<Part>(product.AssociatedParts.ToList());
+            //associatedPartsBindingList = new BindingList<Part>(product.AssociatedParts.ToList());
             dataGridView1.DataSource = Inventory.AllParts;
             dataGridView2.DataSource = associatedPartsBindingList;
             CustomizeDataGridView(dataGridView1);
@@ -93,6 +93,13 @@ namespace Brittany_wguC968
         }
         private void SaveProductBtn_Click(object sender, EventArgs e)
         {
+            //this is to copy associated parts from associatedPartsBindingList
+            product.AssociatedParts.Clear();
+            foreach (Part part in associatedPartsBindingList)
+            {
+                product.AddAssociatedPart(part);
+            }
+
             string productName = productNameTxt.Text;
             int InStock = ParseInt(numInventory.Text);
             decimal price = decimal.Parse(numPrice.Text);
@@ -107,6 +114,7 @@ namespace Brittany_wguC968
             Product newProduct = new Product(productName, InStock, price, min, max);
 
             Inventory.AddProduct(newProduct);
+           
             this.Close();
         }
         private void CancelBtn_Click(object sender, EventArgs e)

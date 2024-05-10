@@ -14,6 +14,7 @@ namespace Brittany_wguC968
         public static BindingList<Product> Products { get; } = new BindingList<Product>();
         public static BindingList<Product> ProductList { get { return Products; } }
         public static BindingList<Part> AllParts { get; } = new BindingList<Part>();
+        //this is used in seach
         public static BindingList<Part> PartsList { get {return AllParts; }}
         Main mainForm = Application.OpenForms.OfType<Main>().FirstOrDefault();
   

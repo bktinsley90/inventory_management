@@ -14,13 +14,14 @@ namespace Brittany_wguC968
     {
         private Product currProduct;
         private Main mainForm;
-        private BindingList<Part> associatedPartsBindingList;
+        private BindingList<Part> associatedPartsBindingList = new BindingList<Part>();
         public modifyProductForm(Main mainForm, Product product)
         {
             InitializeComponent();
             this.mainForm = mainForm;
             this.currProduct = product;
 
+            //PopulateAssociatedPartsDataGridView();
             //current values
             IDtextBox.Text = currProduct.ProductID.ToString();
             productNameTxt.Text = currProduct.Name;
@@ -29,14 +30,17 @@ namespace Brittany_wguC968
             numMin.Text = currProduct.Min.ToString();
             numMax.Text = currProduct.Max.ToString();
 
-            associatedPartsBindingList = new BindingList<Part>(currProduct.AssociatedParts.ToList());
+            //this is to add the current parts associated
+            foreach (Part part in currProduct.LookupAssociatedParts())
+            {
+                associatedPartsBindingList.Add(part);
+            }
+            //associatedPartsBindingList = new BindingList<Part>(currProduct.AssociatedParts.ToList());
             dataGridView1.DataSource = Inventory.AllParts;
             dataGridView2.DataSource = associatedPartsBindingList;
             CustomizeDataGridView(dataGridView1);
             CustomizeDataGridView(dataGridView2);
-
-            
-            PopulateAssociatedPartsDataGridView();
+  
         }
         private void CustomizeDataGridView(DataGridView dataGridView)
         {
@@ -48,13 +52,8 @@ namespace Brittany_wguC968
         }
         private void PopulateAssociatedPartsDataGridView()
         {
-
-            List<Part> associatedParts = currProduct.LookupAssociatedParts();
-            associatedPartsBindingList.Clear();
-            foreach (Part associatedPart in associatedParts)
-            {
-                associatedPartsBindingList.Add(associatedPart);
-            }   
+            associatedPartsBindingList = new BindingList<Part>(currProduct.LookupAssociatedParts());
+   
         }
         private void addProductBtn_Click(object sender, EventArgs e)
         {
