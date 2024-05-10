@@ -21,7 +21,7 @@ namespace Brittany_wguC968
             this.mainForm = mainForm;
             this.currProduct = product;
 
-            //PopulateAssociatedPartsDataGridView();
+          
             //current values
             IDtextBox.Text = currProduct.ProductID.ToString();
             productNameTxt.Text = currProduct.Name;
@@ -50,11 +50,7 @@ namespace Brittany_wguC968
             dataGridView.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Yellow;
             dataGridView.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
         }
-        private void PopulateAssociatedPartsDataGridView()
-        {
-            associatedPartsBindingList = new BindingList<Part>(currProduct.LookupAssociatedParts());
-   
-        }
+       
         private void addProductBtn_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count > 0)

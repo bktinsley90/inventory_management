@@ -86,18 +86,9 @@ namespace Brittany_wguC968
 
             }
         }
-        public static bool RemoveProduct(int productID)
+        public static bool RemoveProduct(Product product)
         {
-            Product productToRemove = null;
-            foreach (var product in Products)
-            {
-                if (product.ProductID == productID)
-                {
-                    productToRemove = product;
-                    break;
-                }
-            }
-            return productToRemove != null && Products.Remove(productToRemove);
+          return Products.Remove(product);
         }
 
 
@@ -112,14 +103,12 @@ namespace Brittany_wguC968
             }
             return null;
         }
-        public static void UpdateProduct(int productID, Product newProduct)
+        public static void UpdateProduct(Main mainForm,Product oldProduct, Product updatedProduct)
         {
-            var productToUpdate = LookupProduct(productID);
-            if (productToUpdate != null)
-            {
-                productToUpdate.Name = newProduct.Name;
-                productToUpdate.Price = newProduct.Price;
-            }
+            RemoveProduct(oldProduct);
+            AddProduct(updatedProduct);
+
+            mainForm.PopulateDataGridViews();
         }
         public static void AddPart(Part part)
         {
