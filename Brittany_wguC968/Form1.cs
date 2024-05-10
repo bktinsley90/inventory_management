@@ -46,7 +46,7 @@ namespace Brittany_wguC968
         {
             Application.Exit();
         }
-
+       
         private void AddPartBtn_Click(object sender, EventArgs e)
         {
             AddPartForm addPartForm = new AddPartForm(this, Inventory);

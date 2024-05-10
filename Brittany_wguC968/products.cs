@@ -40,17 +40,10 @@ namespace Brittany_wguC968
 
         public void AddAssociatedPart(Part part) => AssociatedParts.Add(part);
         public bool RemoveAssociatedPart(Part part) =>  AssociatedParts.Remove(part);
-        
+
         public Part LookupAssociatedPart(int partID)
         {
-            foreach (var part in AssociatedParts)
-            {
-                if (part.PartID == partID)
-                {
-                    return part;
-                }
-            }
-            return null;
+            return AssociatedParts.FirstOrDefault(part => part.PartID == partID);
         }
     }
 }

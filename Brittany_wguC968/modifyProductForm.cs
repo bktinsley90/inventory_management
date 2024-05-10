@@ -12,30 +12,31 @@ namespace Brittany_wguC968
 {
     public partial class modifyProductForm : Form
     {
-        private Product product;
+        private Product currProduct;
         private Main mainForm;
-        private Product product = new Product();
         private BindingList<Part> associatedPartsBindingList;
-        public modifyProductForm(Main mainForm, Product Product)
+        public modifyProductForm(Main mainForm, Product product)
         {
             InitializeComponent();
             this.mainForm = mainForm;
-            this.product = product;
+            this.currProduct = product;
 
             //current values
-            IDtextBox.Text = product.ProductID.ToString();
-            productNameTxt.Text = product.Name;
-            numInventory.Text = product.InStock.ToString();
-            numPrice.Text = product.Price.ToString();
-            numMin.Text = product.Min.ToString();
-            numMax.Text = product.Max.ToString();
+            IDtextBox.Text = currProduct.ProductID.ToString();
+            productNameTxt.Text = currProduct.Name;
+            numInventory.Text = currProduct.InStock.ToString();
+            numPrice.Text = currProduct.Price.ToString();
+            numMin.Text = currProduct.Min.ToString();
+            numMax.Text = currProduct.Max.ToString();
 
-            associatedPartsBindingList = new BindingList<Part>(product.AssociatedParts.ToList());
+            associatedPartsBindingList = new BindingList<Part>(currProduct.AssociatedParts.ToList());
             dataGridView1.DataSource = Inventory.AllParts;
             dataGridView2.DataSource = associatedPartsBindingList;
             CustomizeDataGridView(dataGridView1);
             CustomizeDataGridView(dataGridView2);
 
+
+            PopulateAssociatedPartsDataGridView();
         }
         private void CustomizeDataGridView(DataGridView dataGridView)
         {
@@ -45,22 +46,36 @@ namespace Brittany_wguC968
             dataGridView.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Yellow;
             dataGridView.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
         }
+        private void PopulateAssociatedPartsDataGridView()
+        {
+            
+            System.Collections.IList list = currProduct.AssociatedParts;
+            for (int i = 0; i < list.Count; i++)
+            {
+                int partId = (int)list[i];
+                Part associatedPart = currProduct.LookupAssociatedPart(partId);
+                if (associatedPart != null)
+                {
+                    dataGridView2.Rows.Add(associatedPart.PartID,  associatedPart.Name, associatedPart.InStock, associatedPart.Max, associatedPart.Min);
+                }
+            }
+        }
         private void addProductBtn_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 Part selectedPart = dataGridView1.SelectedRows[0].DataBoundItem as Part;
-                product.AddAssociatedPart(selectedPart);
+                currProduct.AddAssociatedPart(selectedPart);
                 associatedPartsBindingList.Add(selectedPart);
             }
         }
         private void DeleteAssociatedPart_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Do you want to delete this part from this product? This Cannot be undone!", "Confirmation", MessageBoxButtons.YesNo);
+            DialogResult result = MessageBox.Show("Do you want to delete this part from this product?", "Confirmation", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
                 Part selectedPart = dataGridView1.SelectedRows[0].DataBoundItem as Part;
-                product.RemoveAssociatedPart(selectedPart);
+                currProduct.RemoveAssociatedPart(selectedPart);
                 associatedPartsBindingList.Remove(selectedPart);
             }
             else return;

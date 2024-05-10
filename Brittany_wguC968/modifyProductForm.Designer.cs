@@ -178,6 +178,7 @@
             cancelProductBtn.TabIndex = 14;
             cancelProductBtn.Text = "Cancel";
             cancelProductBtn.UseVisualStyleBackColor = true;
+            cancelProductBtn.Click += CancelBtn_Click;
             // 
             // saveProductBtn
             // 
@@ -196,6 +197,7 @@
             deletePartBtn.TabIndex = 16;
             deletePartBtn.Text = "Delete";
             deletePartBtn.UseVisualStyleBackColor = true;
+            deletePartBtn.Click += DeleteAssociatedPart_Click;
             // 
             // button4
             // 
@@ -205,6 +207,7 @@
             button4.TabIndex = 17;
             button4.Text = "Search";
             button4.UseVisualStyleBackColor = true;
+            button4.Click += SearchPartBtn_Click;
             // 
             // searchPartTextBox
             // 
@@ -246,6 +249,7 @@
             addProductBtn.TabIndex = 22;
             addProductBtn.Text = "Add";
             addProductBtn.UseVisualStyleBackColor = true;
+            addProductBtn.Click += addProductBtn_Click;
             // 
             // modifyProductForm
             // 
