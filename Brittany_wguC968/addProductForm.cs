@@ -13,7 +13,7 @@ namespace Brittany_wguC968
     public partial class addProductForm : Form
     {
         private Main mainForm;
-        private Product product = new Product();
+       // private Product product = new Product();
         private BindingList<Part> associatedPartsBindingList = new BindingList<Part>();
         public addProductForm(Main mainForm, Inventory inventory)
         {
@@ -42,7 +42,7 @@ namespace Brittany_wguC968
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 Part selectedPart = dataGridView1.SelectedRows[0].DataBoundItem as Part;
-                product.AddAssociatedPart(selectedPart);
+               // product.AddAssociatedPart(selectedPart);
                 associatedPartsBindingList.Add(selectedPart);
             }
         }
@@ -52,7 +52,7 @@ namespace Brittany_wguC968
             if (result == DialogResult.Yes)
             {
                 Part selectedPart = dataGridView1.SelectedRows[0].DataBoundItem as Part;
-                product.RemoveAssociatedPart(selectedPart);
+                //product.RemoveAssociatedPart(selectedPart);
                 associatedPartsBindingList.Remove(selectedPart);
             }
             else return;
@@ -93,12 +93,7 @@ namespace Brittany_wguC968
         }
         private void SaveProductBtn_Click(object sender, EventArgs e)
         {
-            //this is to copy associated parts from associatedPartsBindingList
-            product.AssociatedParts.Clear();
-            foreach (Part part in associatedPartsBindingList)
-            {
-                product.AddAssociatedPart(part);
-            }
+            
 
             string productName = productNameTxt.Text;
             int InStock = ParseInt(numInventory.Text);
@@ -111,10 +106,18 @@ namespace Brittany_wguC968
                 MessageBox.Show("At least one part must be associated with the product.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            //creating new product
             Product newProduct = new Product(productName, InStock, price, min, max);
 
+            //adding the new product to inventory
             Inventory.AddProduct(newProduct);
-           
+            //this is to copy associated parts from associatedPartsBindingList
+            newProduct.AssociatedParts.Clear();
+            foreach (Part part in associatedPartsBindingList)
+            {
+                newProduct.AddAssociatedPart(part);
+            }
+
             this.Close();
         }
         private void CancelBtn_Click(object sender, EventArgs e)
