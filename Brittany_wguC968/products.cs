@@ -28,9 +28,10 @@ namespace Brittany_wguC968
         
 
         public Product() { }
-     
-        public Product(string productName, int inStock, decimal price, int min, int max)
+
+        public Product(int productID, string productName, int inStock, decimal price, int min, int max)
         {
+            ProductID = productID;
             Name = productName;
             InStock = inStock;
             Price = price;

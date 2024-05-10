@@ -188,6 +188,7 @@
             saveProductBtn.TabIndex = 15;
             saveProductBtn.Text = "Save";
             saveProductBtn.UseVisualStyleBackColor = true;
+            saveProductBtn.Click += SaveProductBtn_Click;
             // 
             // deletePartBtn
             // 

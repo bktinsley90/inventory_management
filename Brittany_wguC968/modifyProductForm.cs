@@ -107,6 +107,7 @@ namespace Brittany_wguC968
         }
         private void SaveProductBtn_Click(object sender, EventArgs e)
         {
+            int productID = ParseInt(IDtextBox.Text);
             string productName = productNameTxt.Text;
             int InStock = ParseInt(numInventory.Text);
             decimal price = decimal.Parse(numPrice.Text);
@@ -119,7 +120,7 @@ namespace Brittany_wguC968
                 return;
             }
             //creating new product
-            Product newProduct = new Product(productName, InStock, price, min, max);
+            Product newProduct = new Product( productID, productName, InStock, price, min, max);
 
             Product oldProductID = Inventory.LookupProduct(productID);
             Inventory.UpdateProduct(mainForm, oldProductID, newProduct);

@@ -93,13 +93,16 @@ namespace Brittany_wguC968
         }
         private void SaveProductBtn_Click(object sender, EventArgs e)
         {
-            
 
-            string productName = productNameTxt.Text;
-            int InStock = ParseInt(numInventory.Text);
-            decimal price = decimal.Parse(numPrice.Text);
-            int min = ParseInt(numMin.Text);
-            int max = ParseInt(numMax.Text);
+            Product newProduct = new Product
+            {
+                Name = productNameTxt.Text,
+                InStock = ParseInt(numInventory.Text),
+                Price = decimal.Parse(numPrice.Text),
+                Min = ParseInt(numMin.Text),
+                Max = ParseInt(numMax.Text)
+            };
+            
 
             if(dataGridView2.Rows.Count == 0)
             {
@@ -107,7 +110,7 @@ namespace Brittany_wguC968
                 return;
             }
             //creating new product
-            Product newProduct = new Product(productName, InStock, price, min, max);
+            //Product newProduct = new Product(productName, InStock, price, min, max);
 
             //adding the new product to inventory
             Inventory.AddProduct(newProduct);
