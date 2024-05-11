@@ -7,24 +7,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Brittany_wguC968
 {
     public partial class addProductForm : Form
     {
         private Main mainForm;
-       // private Product product = new Product();
         private BindingList<Part> associatedPartsBindingList = new BindingList<Part>();
         public addProductForm(Main mainForm, Inventory inventory)
         {
             InitializeComponent();
             this.mainForm = mainForm;
 
-            //associatedPartsBindingList = new BindingList<Part>(product.AssociatedParts.ToList());
+            
             dataGridView1.DataSource = Inventory.AllParts;
             dataGridView2.DataSource = associatedPartsBindingList;
             CustomizeDataGridView(dataGridView1);
             CustomizeDataGridView(dataGridView2);
+
+            //validation
+            saveProductBtn.Enabled = false;
+
+            ValidateFields();
         }
 
 
@@ -36,7 +41,103 @@ namespace Brittany_wguC968
             dataGridView.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Yellow;
             dataGridView.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
         }
+        private void ValidateFields()
+        {
+            bool isValid = true;
+            if (string.IsNullOrWhiteSpace(productNameTxt.Text))
+            {
+                SetError(productNameTxt, "Please enter a Part Name");
+                isValid = false;
+            }
+            else
+            {
+                ClearError(productNameTxt);
 
+            }
+            //validating Min
+            int min;
+            if (!int.TryParse(numMin.Text, out min) || min < 0)
+            {
+                SetError(numMin, "Please enter a valid integer for Min");
+                isValid = false;
+            }
+            else
+            {
+                ClearError(numMin);
+            }
+
+            int max;
+            if (!int.TryParse(numMax.Text, out max) || max < 0)
+            {
+                SetError(numMax, "Please enter a valid integer for max");
+                isValid = false;
+            }
+            else
+            {
+                ClearError(numMax);
+            }
+            //validating instock
+            int inStock;
+            if (!int.TryParse(numInventory.Text, out inStock) || inStock < 0)
+            {
+                SetError(numInventory, "Please enter valid interger for Inventory");
+                isValid = false;
+            }
+            else if (inStock < min || inStock > max)
+            {
+                SetError(numInventory, "Inventory must be between Min and Max");
+                isValid = false;
+            }
+            else
+            {
+                ClearError(numInventory);
+
+            }
+            //Validating Price
+            decimal price;
+            if (!decimal.TryParse(numPrice.Text, out price) || price < 0)
+            {
+                SetError(numPrice, "Please enter a valid decimal for price");
+                isValid = false;
+            }
+            else
+            {
+                ClearError(numPrice);
+
+            }
+
+            //validate max <= min
+            if (max <= min)
+            {
+                SetError(numMax, "Max must be greater than Min");
+                SetError(numMin, "Min must be less than Max");
+                isValid = false;
+            }
+            else
+            {
+                ClearError(numMax);
+                ClearError(numMin);
+            }
+
+            saveProductBtn.Enabled = isValid;
+        
+        }
+
+        private void SetError(Control control, string msg)
+        {
+            toolTip1.SetToolTip(control, msg);
+            control.BackColor = Color.Salmon;
+
+        }
+        private void ClearError(Control control)
+        {
+            toolTip1.SetToolTip(control, "");
+            control.BackColor = Color.White;
+        }
+        private void Control_TxtChanged(object sender, EventArgs e)
+        {
+            ValidateFields();
+        }
         private void addProductBtn_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count > 0)
@@ -109,8 +210,7 @@ namespace Brittany_wguC968
                 MessageBox.Show("At least one part must be associated with the product.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            //creating new product
-            //Product newProduct = new Product(productName, InStock, price, min, max);
+            
 
             //adding the new product to inventory
             Inventory.AddProduct(newProduct);

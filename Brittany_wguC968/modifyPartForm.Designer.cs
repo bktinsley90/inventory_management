@@ -222,6 +222,7 @@
             numMachineID.Name = "numMachineID";
             numMachineID.Size = new Size(100, 23);
             numMachineID.TabIndex = 18;
+            numMachineID.TextChanged += Control_TxtChanged;
             // 
             // txtCompanyName
             // 

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -51,6 +52,7 @@
             dataGridView2 = new DataGridView();
             label9 = new Label();
             addProductBtn = new Button();
+            toolTip1 = new ToolTip(components);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             SuspendLayout();
@@ -132,6 +134,7 @@
             productNameTxt.Name = "productNameTxt";
             productNameTxt.Size = new Size(100, 23);
             productNameTxt.TabIndex = 8;
+            productNameTxt.TextChanged += Control_TxtChanged;
             // 
             // numInventory
             // 
@@ -139,6 +142,7 @@
             numInventory.Name = "numInventory";
             numInventory.Size = new Size(100, 23);
             numInventory.TabIndex = 9;
+            numInventory.TextChanged += Control_TxtChanged;
             // 
             // numPrice
             // 
@@ -146,6 +150,7 @@
             numPrice.Name = "numPrice";
             numPrice.Size = new Size(100, 23);
             numPrice.TabIndex = 10;
+            numPrice.TextChanged += Control_TxtChanged;
             // 
             // numMax
             // 
@@ -153,6 +158,7 @@
             numMax.Name = "numMax";
             numMax.Size = new Size(46, 23);
             numMax.TabIndex = 11;
+            numMax.TextChanged += Control_TxtChanged;
             // 
             // numMin
             // 
@@ -160,6 +166,7 @@
             numMin.Name = "numMin";
             numMin.Size = new Size(54, 23);
             numMin.TabIndex = 12;
+            numMin.TextChanged += Control_TxtChanged;
             // 
             // label8
             // 
@@ -313,5 +320,6 @@
         private DataGridView dataGridView2;
         private Label label9;
         private Button addProductBtn;
+        private ToolTip toolTip1;
     }
 }

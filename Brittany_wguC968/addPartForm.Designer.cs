@@ -220,6 +220,7 @@
             numMachineID.Name = "numMachineID";
             numMachineID.Size = new Size(100, 23);
             numMachineID.TabIndex = 17;
+            numMachineID.TextChanged += Control_TxtChanged;
             // 
             // label8
             // 

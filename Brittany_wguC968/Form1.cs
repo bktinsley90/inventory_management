@@ -116,6 +116,12 @@ namespace Brittany_wguC968
         }
         private void DeleteProdBtn_Click(object sender, EventArgs e)
         {
+            Product selectedProduct = dataGridView2.SelectedRows[0].DataBoundItem as Product;
+            if (selectedProduct.AssociatedParts.Count > 0)
+            {
+                MessageBox.Show("Cannot delete product with associated parts.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             if (dataGridView2.SelectedRows.Count > 0)
             {
                 DialogResult result = MessageBox.Show("Do you really Want to delete Product?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
