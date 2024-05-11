@@ -238,10 +238,6 @@
             txtCompanyName.TabIndex = 19;
             txtCompanyName.Visible = false;
             // 
-            // toolTip1
-            // 
-            toolTip1.Popup += toolTip1_Popup;
-            // 
             // AddPartForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);

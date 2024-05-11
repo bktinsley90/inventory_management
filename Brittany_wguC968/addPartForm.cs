@@ -98,7 +98,7 @@ namespace Brittany_wguC968
             }
             //validating instock
             int inStock;
-            if (!int.TryParse(numInventory.Text, out inStock) || inStock <0)
+            if (string.IsNullOrWhiteSpace(numInventory.Text) || !int.TryParse(numInventory.Text, out inStock) || inStock <0)
             {
                 SetError(numInventory, "Please enter valid interger for Inventory");
                 isValid = false;
