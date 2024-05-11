@@ -21,7 +21,9 @@ namespace Brittany_wguC968
             InitializeComponent();
 
             this.mainForm = mainForm;
-            saveBtn.Enabled = ValidateFields();
+            saveBtn.Enabled = false;
+
+            ValidateFields();
 
         }
 
@@ -81,9 +83,9 @@ namespace Brittany_wguC968
                 txtCompanyName.Visible = false;
             }
         }
-        private bool ValidateFields()
+        private void ValidateFields()
         {
-            bool isValid = false;
+            bool isValid = true;
             if (string.IsNullOrWhiteSpace(txtPartName.Text))
             {
                 SetError(txtPartName, "Please enter a Part Name");
@@ -92,11 +94,80 @@ namespace Brittany_wguC968
             else
             {
                 ClearError(txtPartName);
-                isValid = true;
+                
+            }
+            //validating instock
+            int inStock;
+            if (!int.TryParse(numInventory.Text, out inStock) || inStock <0)
+            {
+                SetError(numInventory, "Please enter valid interger for Inventory");
+                isValid = false;
+            }
+            else
+            {
+                ClearError(numInventory);
+
+            }
+            //Validating Price
+            decimal price;
+            if (!decimal.TryParse(numPrice.Text, out price) || price < 0)
+            {
+                SetError(numPrice, "Please enter a valid decimal for price");
+                isValid = false;
+            }
+            else
+            {
+                ClearError(numPrice);
+
+            }
+            //validating Min
+            int min;
+            if(!int.TryParse(numMin.Text, out min)|| min < 0)
+            {
+                SetError(numMin, "Please enter a valid integer for Min");
+                isValid = false;
+            }
+            else
+            {
+                ClearError(numMin);
             }
 
+            int max;
+            if (!int.TryParse(numMax.Text, out max) || max < 0)
+            {
+                SetError(numMax, "Please enter a valid integer for max");
+                isValid = false;
+            }
+            else
+            {
+                ClearError(numMax);
+            }
+            //validate max <= min
+            if (max <= min)
+            {
+                SetError(numMax, "Max must be greater than Min");
+                SetError(numMin, "Min must be less than Max");
+                isValid = false;
+            }
+            else
+            {
+                ClearError(numMax);
+                ClearError(numMin);
+            }
 
-            return isValid;
+            //validating Inventory between Min Max
+            if (inStock < min || inStock >max)
+            {
+                SetError(numInventory, "Inventory must be between Min and Max");
+                isValid = false;
+            }
+            else
+            {
+                ClearError(numInventory);
+                
+            }
+            saveBtn.Enabled = isValid;
+            //return isValid;
         }
         private void SetError(Control control, string msg)
         {
@@ -108,6 +179,10 @@ namespace Brittany_wguC968
         {
             toolTip1.SetToolTip(control, "");
             control.BackColor = Color.White;
+        }
+        private void Control_TxtChanged(object sender, EventArgs e)
+        {
+            ValidateFields();
         }
 
         private void outSourcedRadioBtn_CheckedChanged(object sender, EventArgs e)

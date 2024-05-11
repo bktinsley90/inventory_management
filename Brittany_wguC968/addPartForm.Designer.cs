@@ -100,6 +100,7 @@
             txtPartName.Name = "txtPartName";
             txtPartName.Size = new Size(100, 23);
             txtPartName.TabIndex = 4;
+            txtPartName.TextChanged += Control_TxtChanged;
             // 
             // label4
             // 
@@ -125,6 +126,7 @@
             numInventory.Name = "numInventory";
             numInventory.Size = new Size(100, 23);
             numInventory.TabIndex = 7;
+            numInventory.TextChanged += Control_TxtChanged;
             // 
             // numPrice
             // 
@@ -132,6 +134,7 @@
             numPrice.Name = "numPrice";
             numPrice.Size = new Size(100, 23);
             numPrice.TabIndex = 8;
+            numPrice.TextChanged += Control_TxtChanged;
             // 
             // label6
             // 
@@ -148,6 +151,7 @@
             numMax.Name = "numMax";
             numMax.Size = new Size(62, 23);
             numMax.TabIndex = 10;
+            numMax.TextChanged += Control_TxtChanged;
             // 
             // label7
             // 
@@ -164,6 +168,7 @@
             numMin.Name = "numMin";
             numMin.Size = new Size(66, 23);
             numMin.TabIndex = 12;
+            numMin.TextChanged += Control_TxtChanged;
             // 
             // cancelBtn
             // 
