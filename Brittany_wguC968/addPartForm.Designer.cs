@@ -237,6 +237,7 @@
             txtCompanyName.Size = new Size(100, 23);
             txtCompanyName.TabIndex = 19;
             txtCompanyName.Visible = false;
+            txtCompanyName.TextChanged += Control_TxtChanged;
             // 
             // AddPartForm
             // 

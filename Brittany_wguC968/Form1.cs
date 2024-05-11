@@ -101,7 +101,7 @@ namespace Brittany_wguC968
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                DialogResult result = MessageBox.Show("Do you really Want to delete Part? This cannot be Undone", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                DialogResult result = MessageBox.Show("Do you really Want to delete Part?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (result == DialogResult.Yes)
                 {
                     DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
@@ -118,7 +118,7 @@ namespace Brittany_wguC968
         {
             if (dataGridView2.SelectedRows.Count > 0)
             {
-                DialogResult result = MessageBox.Show("Do you really Want to delete Product? This cannot be Undone", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                DialogResult result = MessageBox.Show("Do you really Want to delete Product?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (result == DialogResult.Yes)
                 {
                     DataGridViewRow selectedRow = dataGridView2.SelectedRows[0];

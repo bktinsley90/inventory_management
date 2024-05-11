@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -48,6 +49,7 @@
             outSourcedRadioBtn = new RadioButton();
             numMachineID = new TextBox();
             txtCompanyName = new TextBox();
+            toolTip1 = new ToolTip(components);
             SuspendLayout();
             // 
             // label1
@@ -156,6 +158,7 @@
             txtPartName.Name = "txtPartName";
             txtPartName.Size = new Size(100, 23);
             txtPartName.TabIndex = 11;
+            txtPartName.TextChanged += Control_TxtChanged;
             // 
             // numInventory
             // 
@@ -163,6 +166,7 @@
             numInventory.Name = "numInventory";
             numInventory.Size = new Size(100, 23);
             numInventory.TabIndex = 12;
+            numInventory.TextChanged += Control_TxtChanged;
             // 
             // numPrice
             // 
@@ -170,6 +174,7 @@
             numPrice.Name = "numPrice";
             numPrice.Size = new Size(100, 23);
             numPrice.TabIndex = 13;
+            numPrice.TextChanged += Control_TxtChanged;
             // 
             // numMax
             // 
@@ -177,6 +182,7 @@
             numMax.Name = "numMax";
             numMax.Size = new Size(76, 23);
             numMax.TabIndex = 14;
+            numMax.TextChanged += Control_TxtChanged;
             // 
             // numMin
             // 
@@ -184,6 +190,7 @@
             numMin.Name = "numMin";
             numMin.Size = new Size(74, 23);
             numMin.TabIndex = 15;
+            numMin.TextChanged += Control_TxtChanged;
             // 
             // inHouseRadioBtn
             // 
@@ -223,6 +230,7 @@
             txtCompanyName.Size = new Size(100, 23);
             txtCompanyName.TabIndex = 19;
             txtCompanyName.Visible = false;
+            txtCompanyName.TextChanged += Control_TxtChanged;
             // 
             // modifyPartForm
             // 
@@ -277,5 +285,6 @@
         private RadioButton outSourcedRadioBtn;
         private TextBox numMachineID;
         private TextBox txtCompanyName;
+        private ToolTip toolTip1;
     }
 }

@@ -96,33 +96,9 @@ namespace Brittany_wguC968
                 ClearError(txtPartName);
                 
             }
-            //validating instock
-            int inStock;
-            if (string.IsNullOrWhiteSpace(numInventory.Text) || !int.TryParse(numInventory.Text, out inStock) || inStock <0)
-            {
-                SetError(numInventory, "Please enter valid interger for Inventory");
-                isValid = false;
-            }
-            else
-            {
-                ClearError(numInventory);
-
-            }
-            //Validating Price
-            decimal price;
-            if (!decimal.TryParse(numPrice.Text, out price) || price < 0)
-            {
-                SetError(numPrice, "Please enter a valid decimal for price");
-                isValid = false;
-            }
-            else
-            {
-                ClearError(numPrice);
-
-            }
             //validating Min
             int min;
-            if(!int.TryParse(numMin.Text, out min)|| min < 0)
+            if (!int.TryParse(numMin.Text, out min) || min < 0)
             {
                 SetError(numMin, "Please enter a valid integer for Min");
                 isValid = false;
@@ -142,6 +118,36 @@ namespace Brittany_wguC968
             {
                 ClearError(numMax);
             }
+            //validating instock
+            int inStock;
+            if (!int.TryParse(numInventory.Text, out inStock) || inStock <0)
+            {
+                SetError(numInventory, "Please enter valid interger for Inventory");
+                isValid = false;
+            }
+            else if(inStock < min || inStock > max)
+            {
+                SetError(numInventory, "Inventory must be between Min and Max");
+                isValid = false;
+            }
+            else
+            {
+                ClearError(numInventory);
+
+            }
+            //Validating Price
+            decimal price;
+            if (!decimal.TryParse(numPrice.Text, out price) || price < 0)
+            {
+                SetError(numPrice, "Please enter a valid decimal for price");
+                isValid = false;
+            }
+            else
+            {
+                ClearError(numPrice);
+
+            }
+            
             //validate max <= min
             if (max <= min)
             {
@@ -155,20 +161,37 @@ namespace Brittany_wguC968
                 ClearError(numMin);
             }
 
-            //validating Inventory between Min Max
-            if (inStock < min || inStock >max)
+            
+            //validating machineID and CompanyName
+            int machineID;
+            if (inHouseRadioBtn.Checked && (!int.TryParse(numMachineID.Text, out machineID) || machineID < 0 ))
             {
-                SetError(numInventory, "Inventory must be between Min and Max");
+                SetError(numMachineID, "Please enter a valid integer for MachineID");
                 isValid = false;
             }
             else
             {
-                ClearError(numInventory);
-                
+                ClearError(numMachineID);
+
             }
+            
+
+            if (outSourcedRadioBtn.Checked && string.IsNullOrWhiteSpace(txtCompanyName.Text))
+            {
+                SetError(txtCompanyName, "Please enter a Company Name");
+                isValid = false;
+            }
+            else
+            {
+                ClearError(txtCompanyName);
+
+            }
+        
+
             saveBtn.Enabled = isValid;
             //return isValid;
         }
+      
         private void SetError(Control control, string msg)
         {
             toolTip1.SetToolTip(control, msg);
@@ -195,6 +218,7 @@ namespace Brittany_wguC968
                 numMachineID.Visible = false;
             }
         }
+        
         private void CancelBtn_Click(object sender, EventArgs e)
         {
             Close();

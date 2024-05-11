@@ -8,6 +8,7 @@ using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Brittany_wguC968
 {
@@ -40,6 +41,11 @@ namespace Brittany_wguC968
                 outSourcedRadioBtn.Checked = true;
                 //inHouseRadioBtn.Enabled = false;
             }
+
+            //validation
+            saveBtn.Enabled = false;
+
+            ValidateFields();
         }
         private int ParseInt(string x)
         {
@@ -49,10 +55,9 @@ namespace Brittany_wguC968
         {
 
             Part newPart;
+            //part is InHouse inHouse, part is Outsourced outsourced
 
-
-
-            if (part is InHouse inHouse)
+            if (inHouseRadioBtn.Checked)
             {
 
                 newPart = new InHouse
@@ -66,7 +71,7 @@ namespace Brittany_wguC968
                     MachineID = ParseInt(numMachineID.Text)
                 };
             }
-            else if (part is Outsourced outsourced)
+            else if (outSourcedRadioBtn.Checked)
             {
                 newPart = new Outsourced
                 {
@@ -90,7 +95,130 @@ namespace Brittany_wguC968
             MessageBox.Show("Changes saved SuccessFully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();
         }
+        private void ValidateFields()
+        {
+            bool isValid = true;
+            if (string.IsNullOrWhiteSpace(txtPartName.Text))
+            {
+                SetError(txtPartName, "Please enter a Part Name");
+                isValid = false;
+            }
+            else
+            {
+                ClearError(txtPartName);
 
+            }
+            //validating Min
+            int min;
+            if (!int.TryParse(numMin.Text, out min) || min < 0)
+            {
+                SetError(numMin, "Please enter a valid integer for Min");
+                isValid = false;
+            }
+            else
+            {
+                ClearError(numMin);
+            }
+
+            int max;
+            if (!int.TryParse(numMax.Text, out max) || max < 0)
+            {
+                SetError(numMax, "Please enter a valid integer for max");
+                isValid = false;
+            }
+            else
+            {
+                ClearError(numMax);
+            }
+            //validating instock
+            int inStock;
+            if (!int.TryParse(numInventory.Text, out inStock) || inStock < 0)
+            {
+                SetError(numInventory, "Please enter valid interger for Inventory");
+                isValid = false;
+            }
+            else if (inStock < min || inStock > max)
+            {
+                SetError(numInventory, "Inventory must be between Min and Max");
+                isValid = false;
+            }
+            else
+            {
+                ClearError(numInventory);
+
+            }
+            //Validating Price
+            decimal price;
+            if (!decimal.TryParse(numPrice.Text, out price) || price < 0)
+            {
+                SetError(numPrice, "Please enter a valid decimal for price");
+                isValid = false;
+            }
+            else
+            {
+                ClearError(numPrice);
+
+            }
+
+            //validate max <= min
+            if (max <= min)
+            {
+                SetError(numMax, "Max must be greater than Min");
+                SetError(numMin, "Min must be less than Max");
+                isValid = false;
+            }
+            else
+            {
+                ClearError(numMax);
+                ClearError(numMin);
+            }
+
+
+            //validating machineID and CompanyName
+            int machineID;
+            if (inHouseRadioBtn.Checked && (!int.TryParse(numMachineID.Text, out machineID) || machineID < 0))
+            {
+                SetError(numMachineID, "Please enter a valid integer for MachineID");
+                isValid = false;
+            }
+            else
+            {
+                ClearError(numMachineID);
+
+            }
+
+
+            if (outSourcedRadioBtn.Checked && string.IsNullOrWhiteSpace(txtCompanyName.Text))
+            {
+                SetError(txtCompanyName, "Please enter a Company Name");
+                isValid = false;
+            }
+            else
+            {
+                ClearError(txtCompanyName);
+
+            }
+
+
+            saveBtn.Enabled = isValid;
+            //return isValid;
+        }
+
+        private void SetError(Control control, string msg)
+        {
+            toolTip1.SetToolTip(control, msg);
+            control.BackColor = Color.Salmon;
+
+        }
+        private void ClearError(Control control)
+        {
+            toolTip1.SetToolTip(control, "");
+            control.BackColor = Color.White;
+        }
+        private void Control_TxtChanged(object sender, EventArgs e)
+        {
+            ValidateFields();
+        }
         private void inHouseRadioBtn_CheckedChanged(object sender, EventArgs e)
         {
             if (inHouseRadioBtn.Checked)
