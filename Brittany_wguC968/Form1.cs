@@ -37,6 +37,7 @@ namespace Brittany_wguC968
         private void CustomizeDataGridView(DataGridView dataGridView)
         {
             dataGridView.AutoGenerateColumns = true;
+            dataGridView.Columns["InStock"].HeaderText = "Inventory";
             dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView.RowHeadersVisible = false;
             dataGridView.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Yellow;
@@ -146,6 +147,7 @@ namespace Brittany_wguC968
             if (string.IsNullOrEmpty(keyword))
             {
                 MessageBox.Show("Please enter a search keyword.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dataGridView1.DataSource = parts;
                 return;
             }
 
@@ -175,6 +177,7 @@ namespace Brittany_wguC968
             if (string.IsNullOrEmpty(keyword))
             {
                 MessageBox.Show("Please enter a search keyword.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dataGridView2.DataSource = products;
                 return;
             }
 
