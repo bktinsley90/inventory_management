@@ -12,8 +12,8 @@ This project is an inventory management system that allows the user to add, remo
 
 ---
 
-![Main Screen](pictures/mainScreen.png)
-![Add Product](pictures/addProductForm.png)
-![Add Part](pictures/addPartForm.png)
-![Modify Product](pictures/modifyProductForm.png)
-![Modify Part](pictures/modifyPartForm.png)
+![Main Screen](Pictures/mainScreen.png)
+![Add Product](Pictures/addProductForm.png)
+![Add Part](Pictures/addPartForm.png)
+![Modify Product](Pictures/modifyProductForm.png)
+![Modify Part](Pictures/modifyPartForm.png)
