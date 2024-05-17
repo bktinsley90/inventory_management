@@ -107,9 +107,9 @@ namespace Brittany_wguC968
             }
             return null;
         }
-        public static void UpdateProduct(Product oldProduct, Product updatedProduct)
+        public static void UpdateProduct(Product oldProductID, Product updatedProduct)
         {
-            RemoveProduct(oldProduct);
+            RemoveProduct(oldProductID);
             AddProduct(updatedProduct);
 
         }
@@ -150,9 +150,9 @@ namespace Brittany_wguC968
             Part emptyPart = new InHouse();
             return emptyPart;
         }
-        public static void UpdatePart( Part oldPart, Part updatedPart)
+        public static void UpdatePart( Part oldPartID, Part updatedPart)
         {
-           DeletePart(oldPart);
+           DeletePart(oldPartID);
            AddPart(updatedPart);
 
         }
