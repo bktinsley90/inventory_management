@@ -112,10 +112,25 @@ namespace Brittany_wguC968
         }
         public static void AddPart(Part part)
         {
-            var existingPart = AllParts.FirstOrDefault(p => p.PartID == part.PartID);
-            if (existingPart != null)
+            
+            if (part.PartID > 0)
             {
                 AllParts.Add(part);
+                /*existingPart.PartID = part.PartID;
+                existingPart.Name = part.Name;
+                existingPart.InStock = part.InStock;
+                existingPart.Price = part.Price;
+                existingPart.Min = part.Min;
+                existingPart.Max = part.Max;
+
+                if(existingPart is InHouse && part is InHouse)
+                {
+                    ((InHouse)existingPart).MachineID = ((InHouse)part).MachineID;
+                }
+                else if(existingPart is Outsourced && part is Outsourced)
+                {
+                    ((Outsourced)existingPart).CompanyName = ((Outsourced)part).CompanyName;
+                }*/
                 
             }
             else
@@ -124,6 +139,12 @@ namespace Brittany_wguC968
                 part.PartID = newPartID;
                 AllParts.Add(part);
                 
+            }
+            var sortedParts = AllParts.OrderBy(part => part.PartID).ToList();
+            AllParts.Clear();
+            foreach (var p in sortedParts)
+            {
+                AllParts.Add(p);
             }
  
         }

@@ -33,13 +33,13 @@ namespace Brittany_wguC968
             {
                 numMachineID.Text = inHouse.MachineID.ToString();
                 inHouseRadioBtn.Checked = true;
-                //outSourcedRadioBtn.Enabled = false;
+                
             }
             else if (part is Outsourced outsourced)
             {
                 txtCompanyName.Text = outsourced.CompanyName;
                 outSourcedRadioBtn.Checked = true;
-                //inHouseRadioBtn.Enabled = false;
+                
             }
 
             //validation
