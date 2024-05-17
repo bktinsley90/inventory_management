@@ -158,8 +158,15 @@ namespace Brittany_wguC968
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 Part selectedPart = dataGridView1.SelectedRows[0].DataBoundItem as Part;
-                currProduct.AddAssociatedPart(selectedPart);
-                associatedPartsBindingList.Add(selectedPart);
+                if (!associatedPartsBindingList.Contains(selectedPart))
+                {
+                    //product.AddAssociatedPart(selectedPart);
+                    associatedPartsBindingList.Add(selectedPart);
+                }
+                else
+                {
+                    MessageBox.Show("This part is already associated with the product.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
         private void DeleteAssociatedPart_Click(object sender, EventArgs e)

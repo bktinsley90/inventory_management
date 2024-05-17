@@ -71,9 +71,7 @@ namespace Brittany_wguC968
         }
         public static void AddProduct(Product product)
         {
-
-            var existingPart = Products.FirstOrDefault(p => p.ProductID == product.ProductID);
-            if (existingPart != null)
+            if (product.ProductID > 0)
             {
                 Products.Add(product);
                 
@@ -84,6 +82,12 @@ namespace Brittany_wguC968
                 product.ProductID = newProductID;
                 Products.Add(product);
 
+            }
+            var sortedProducts = Products.OrderBy(product => product.ProductID).ToList();
+            Products.Clear();
+            foreach (var p in sortedProducts)
+            {
+                Products.Add(p);
             }
         }
         public static bool RemoveProduct(Product product)
@@ -116,21 +120,6 @@ namespace Brittany_wguC968
             if (part.PartID > 0)
             {
                 AllParts.Add(part);
-                /*existingPart.PartID = part.PartID;
-                existingPart.Name = part.Name;
-                existingPart.InStock = part.InStock;
-                existingPart.Price = part.Price;
-                existingPart.Min = part.Min;
-                existingPart.Max = part.Max;
-
-                if(existingPart is InHouse && part is InHouse)
-                {
-                    ((InHouse)existingPart).MachineID = ((InHouse)part).MachineID;
-                }
-                else if(existingPart is Outsourced && part is Outsourced)
-                {
-                    ((Outsourced)existingPart).CompanyName = ((Outsourced)part).CompanyName;
-                }*/
                 
             }
             else
