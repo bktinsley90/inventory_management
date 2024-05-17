@@ -102,12 +102,21 @@ namespace Brittany_wguC968
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
+                DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
+                int selectedPartID = (int)selectedRow.Cells[0].Value;
+                Part selectedPart = Inventory.LookupPart(selectedPartID);
+
+                if (IsPartAssociatedWithProduct(selectedPart))
+                {
+                    MessageBox.Show("Cannot delete part that is associated with a product.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }   
+
                 DialogResult result = MessageBox.Show("Do you really Want to delete Part?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (result == DialogResult.Yes)
                 {
-                    DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
-                    int rowIndex = selectedRow.Index;
-                    dataGridView1.Rows.RemoveAt(rowIndex);
+                    Inventory.DeletePart(selectedPart);
+                    PopulateDataGridViews();
                 }
             }
             else
@@ -115,14 +124,28 @@ namespace Brittany_wguC968
                 MessageBox.Show("Please select a row to delete.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+        private bool IsPartAssociatedWithProduct(Part part)
+        {
+            foreach (var product in Inventory.Products)
+            {
+                foreach (var associatedPart in product.AssociatedParts)
+                {
+                    if (associatedPart.PartID == part.PartID)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
         private void DeleteProdBtn_Click(object sender, EventArgs e)
         {
-            Product selectedProduct = dataGridView2.SelectedRows[0].DataBoundItem as Product;
+           /* Product selectedProduct = dataGridView2.SelectedRows[0].DataBoundItem as Product;
             if (selectedProduct.AssociatedParts.Count > 0)
             {
                 MessageBox.Show("Cannot delete product with associated parts.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-            }
+            }*/
             if (dataGridView2.SelectedRows.Count > 0)
             {
                 DialogResult result = MessageBox.Show("Do you really Want to delete Product?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
