@@ -90,8 +90,9 @@ namespace Brittany_wguC968
                 return;
             }
             Part oldPartID = Inventory.LookupPart(part.PartID);
-            Inventory.UpdatePart(mainForm, oldPartID, newPart);
-  
+            Inventory.UpdatePart(oldPartID, newPart);
+
+            mainForm.PopulateDataGridViews();
             MessageBox.Show("Changes saved SuccessFully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();
         }

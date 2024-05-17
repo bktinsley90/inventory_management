@@ -107,12 +107,11 @@ namespace Brittany_wguC968
             }
             return null;
         }
-        public static void UpdateProduct(Main mainForm,Product oldProduct, Product updatedProduct)
+        public static void UpdateProduct(Product oldProduct, Product updatedProduct)
         {
             RemoveProduct(oldProduct);
             AddProduct(updatedProduct);
 
-            mainForm.PopulateDataGridViews();
         }
         public static void AddPart(Part part)
         {
@@ -151,13 +150,11 @@ namespace Brittany_wguC968
             Part emptyPart = new InHouse();
             return emptyPart;
         }
-        public static void UpdatePart(Main mainForm, Part oldPart, Part updatedPart)
+        public static void UpdatePart( Part oldPart, Part updatedPart)
         {
            DeletePart(oldPart);
            AddPart(updatedPart);
 
-
-           mainForm.PopulateDataGridViews();
         }
 
 

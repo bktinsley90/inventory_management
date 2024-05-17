@@ -147,7 +147,6 @@ namespace Brittany_wguC968
 
                 if (!associatedPartsBindingList.Contains(selectedPart))
                 {
-                    //product.AddAssociatedPart(selectedPart);
                     associatedPartsBindingList.Add(selectedPart);
                 }
                 else
@@ -163,7 +162,6 @@ namespace Brittany_wguC968
             if (result == DialogResult.Yes)
             {
                 Part selectedPart = dataGridView1.SelectedRows[0].DataBoundItem as Part;
-                //product.RemoveAssociatedPart(selectedPart);
                 associatedPartsBindingList.Remove(selectedPart);
             }
             else return;

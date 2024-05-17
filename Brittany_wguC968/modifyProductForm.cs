@@ -160,7 +160,7 @@ namespace Brittany_wguC968
                 Part selectedPart = dataGridView1.SelectedRows[0].DataBoundItem as Part;
                 if (!associatedPartsBindingList.Contains(selectedPart))
                 {
-                    //product.AddAssociatedPart(selectedPart);
+                    currProduct.AddAssociatedPart(selectedPart);
                     associatedPartsBindingList.Add(selectedPart);
                 }
                 else
@@ -233,8 +233,8 @@ namespace Brittany_wguC968
             Product newProduct = new Product( productID, productName, InStock, price, min, max);
 
             Product oldProductID = Inventory.LookupProduct(productID);
-            Inventory.UpdateProduct(mainForm, oldProductID, newProduct);
-
+            Inventory.UpdateProduct(oldProductID, newProduct);
+            mainForm.PopulateDataGridViews();
             newProduct.AssociatedParts.Clear();
             foreach (Part part in associatedPartsBindingList)
             {
